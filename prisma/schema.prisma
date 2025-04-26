@@ -45,6 +45,8 @@ model Address {
 
   customerId String   @unique @map("customer_id")
   customer   Customer @relation(fields: [customerId], references: [id])
+
+  @@map("addresses")
 }
 
 model User {
@@ -97,4 +99,5 @@ model RolePermission {
   permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
 
   @@id([roleId, permissionId])
+  @@map("role_permissions")
 }

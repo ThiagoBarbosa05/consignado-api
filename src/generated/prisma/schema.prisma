@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id                String  @id @default(uuid())
+  name              String
+  document          String  @unique
+  contactPerson     String? @map("contact_person")
+  email             String? @unique
+  cellphone         BigInt?
+  businessPhone     BigInt? @map("business_phone")
+  stateRegistration String  @map("state_registration")
+
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime? @updatedAt @map("updated_at")
+  disabledAt DateTime? @map("disabled_at")
+  Address    Address?
+  users      User[]
+
+  @@index([name])
+  @@map("customers")
+}
+
+model Address {
+  id            String  @id @default(uuid())
+  streetAddress String
+  zipCode       String
+  state         String
+  city          String
+  neighborhood  String?
+  number        String?
+
+  customerId String   @unique @map("customer_id")
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  @@map("addresses")
+}
+
+model User {
+  id                   String     @id @default(uuid())
+  email                String     @unique
+  name                 String
+  password             String
+  roles                UserRole[]
+  createdAt            DateTime   @default(now()) @map("created_at")
+  updatedAt            DateTime   @updatedAt @map("updated_at")
+  associatedCustomerId String?    @map("associated_customer_id")
+  customer             Customer?  @relation(fields: [associatedCustomerId], references: [id])
+
+  @@map("users")
+}
+
+model Role {
+  id          String           @id @default(uuid())
+  name        String           @unique
+  users       UserRole[]
+  permissions RolePermission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id    String           @id @default(uuid())
+  name  String           @unique
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+model UserRole {
+  userId String @map("user_id")
+  roleId String @map("role_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model RolePermission {
+  roleId       String @map("role_id")
+  permissionId String @map("permission_id")
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
