@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { zodCNPJ } from "../utils/cnpj-validator";
-import { zodCepValidator } from "../utils/cep-validater";
+import { zodCepValidator } from "../utils/cep-validator";
 
 const cellphoneRegex = /^(\(?\d{2}\)?\s?)?(9\d{4})-?(\d{4})$/
 const businessPhoneRegex = /^(\(?\d{2}\)?\s?)?(\d{4})-?(\d{4})$/

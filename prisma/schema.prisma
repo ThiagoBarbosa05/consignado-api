@@ -27,6 +27,7 @@ model Customer {
   createdAt  DateTime  @default(now()) @map("created_at")
   updatedAt  DateTime? @map("updated_at")
   disabledAt DateTime? @map("disabled_at")
+  Address    Address?
 
   @@index([name])
   @@map("customers")
@@ -40,4 +41,7 @@ model Address {
   city          String
   neighborhood  String?
   number        String?
+
+  customerId String   @unique
+  customer   Customer @relation(fields: [customerId], references: [id])
 }
