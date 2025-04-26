@@ -15,7 +15,9 @@
     "@prisma/client": "^6.6.0",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
