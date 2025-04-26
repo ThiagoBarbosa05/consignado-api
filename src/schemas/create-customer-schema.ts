@@ -20,7 +20,7 @@ export const createCustomerSchema = z.object({
     neighborhood: z.string().optional(),
     number: z.string().optional(),
   }),
-  stateRegistration: z.string().optional()
+  stateRegistration: z.string()
 })
 
 export type CreateCustomerSchema = z.infer<typeof createCustomerSchema>
