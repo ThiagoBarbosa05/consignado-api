@@ -4,6 +4,9 @@ import { userRoute } from './routes/user-route'
 import cors from "cors"
 import { dashboardMetricsController } from './controllers/dashboard-metrics'
 import { prisma } from './lib/prisma'
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express()
 

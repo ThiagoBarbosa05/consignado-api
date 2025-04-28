@@ -6,22 +6,23 @@ const prisma = new PrismaClient({log: ["query", "info", "warn", "error"]});
 async function seed() {
 //  await prisma.role.createMany({
 //     data: [
-//       { name: "admin" },
-//       { name: "customer" },
-//       { name: "seller" }
+//       { name: "administrador" },
+//       { name: "vendedor" },
+//       { name: "cliente" }
 //     ]
 //   })
 
 // await prisma.permission.create({
 //   data: {
-//     name: "all"
+//     name: "all",
+//     description: "Todas as permissões"
 //   }
 // })
 
 // await prisma.rolePermission.create({
 //   data: {
-//     permissionId: "45a7a943-10bb-4f5e-be32-a741d0c73e27",
-//     roleId: "841a5b6f-9265-4c2c-b7af-de79179cd360"
+//     permissionId: "cf530c4b-d999-48d9-ade5-aed2e8e3ec00",
+//     roleId: "fe7d118e-876e-4805-a43c-8c8c3d06128b"
 //   }
 // })
 
@@ -114,12 +115,12 @@ async function seed() {
   //   }
   // })
 
-  // await prisma.userRole.create({
-  //   data: {
-  //     userId: userCreated.id,
-  //     roleId: "841a5b6f-9265-4c2c-b7af-de79179cd360"
-  //   }
-  // })
+  await prisma.userRole.create({
+    data: {
+      userId: "ae84c314-7421-44e8-9903-7a5af1e1d675",
+      roleId: "fe7d118e-876e-4805-a43c-8c8c3d06128b"
+    }
+  })
 }
 
 seed().then(async () => {

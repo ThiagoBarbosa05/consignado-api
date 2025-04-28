@@ -4,7 +4,6 @@ import { ZodError } from "zod";
 import { prisma } from "../lib/prisma";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken"
-import "dotenv/config"
 
 export async function authenticateUserController(req: Request, res: Response) {
   try {

@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { prisma } from "../lib/prisma";
 
 export function checkPermission(requiredPermission: string) {
   return async (req: Request, res: Response, next: NextFunction) => {

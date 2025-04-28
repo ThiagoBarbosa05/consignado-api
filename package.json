@@ -2,11 +2,12 @@
   "name": "controle-estoque-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src --out-dir build",
-    "lint": "eslint src --ext .ts --fix"
+    "build": "prisma generate && tsc && cp -r src/generated dist/generated",
+    "lint": "eslint src --ext .ts --fix",
+    "start": "node dist/server.js"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
