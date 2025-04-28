@@ -46,4 +46,4 @@ jobs:
       - name: remove container
         run: docker rm -f security-app
       - name: Run docker container
-        run: docker run -d -p 4000:4000 -e DATABASE_URL='${{secrets.DATABASE_URL}}' -e JWT_SECRET='${{secrets.JWT_SECRET}}' --name controle-estoque-api thiago0503/thiago0503/controle-estoque-api
+        run: docker run -d -p 4000:4000 -e DATABASE_URL='${{secrets.DATABASE_URL}}' -e JWT_SECRET='${{secrets.JWT_SECRET}}' --name controle-estoque-api thiago0503/controle-estoque-api
