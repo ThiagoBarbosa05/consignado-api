@@ -33,6 +33,87 @@ async function seed() {
   //   }
   // })
 
+  // await prisma.permission.createMany({
+  //   data: [
+  //     { 
+  //       name: "read:metrics",
+  //       description: "Visualizar métricas no dashboard"
+  //     },
+  //     {
+  //       name: "read:customers",
+  //       description: "Visualizar clientes"
+  //     },
+  //     {
+  //       name: "create:customers",
+  //       description: "Criar novos clientes"
+  //     },
+  //     {
+  //       name: "update:customers",
+  //       description: "Atualizar dados dos clientes"
+  //     },
+  //     {
+  //       name: "delete:customers",
+  //       description: "Excluir clientes"
+  //     },
+  //     {
+  //       name: "read:users",
+  //       description: "Visualizar usuários"
+  //     },
+  //     {
+  //       name: "create:users",
+  //       description: "Criar novos usuários"
+  //     },
+  //     {
+  //       name: "update:users",
+  //       description: "Atualizar dados dos usuários"
+  //     },
+  //     {
+  //       name: "delete:users",
+  //       description: "Excluir usuários"
+  //     },
+    
+  //     {
+  //       name: "read:consigned",
+  //       description: "Visualizar vendas consignadas"
+  //     },
+  //     {
+  //       name: "create:consigned",
+  //       description: "Criar novas vendas consignadas"
+  //     },
+  //     {
+  //       name: "update:consigned",
+  //       description: "Atualizar dados das vendas consignadas"
+  //     },
+  //     {
+  //       name: "delete:consigned",
+  //       description: "Excluir vendas consignadas"
+  //     },
+  //     {
+  //       name: "read:wines",
+  //       description: "Visualizar vinhos"
+  //     },
+  //     {
+  //       name: "create:wines",
+  //       description: "Criar novos vinhos"
+  //     },
+  //     {
+  //       name: "update:wines",
+  //       description: "Atualizar dados dos vinhos"
+  //     },
+  //     {
+  //       name: "delete:wines",
+  //       description: "Excluir vinhos"
+  //     }
+  //   ]
+  // })
+
+  // await prisma.rolePermission.create({
+  //   data: {
+  //     permissionId: "95b0aece-c667-42fa-af30-cbb4f4d8422d",
+  //     roleId: "f640a066-8466-4132-b2ac-78cc70b2aa5c"
+  //   }
+  // })
+
   // await prisma.userRole.create({
   //   data: {
   //     userId: userCreated.id,

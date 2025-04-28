@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { zodCNPJ } from "../utils/cnpj-validator";
 import { zodCepValidator } from "../utils/cep-validator";
+import { zodCNPJ } from "../utils/cnpj-validator";
 
 const cellphoneRegex = /^(\(?\d{2}\)?\s?)?(9\d{4})-?(\d{4})$/
 const businessPhoneRegex = /^(\(?\d{2}\)?\s?)?(\d{4})-?(\d{4})$/
@@ -14,7 +14,7 @@ const addressSchema = z.object({
   number: z.string().optional(),
 });
 
-export const createCustomerSchema = z.object({
+export const updateCustomerSchema = z.object({
   name: z.string().min(1, { message: "O campo Nome é obrigatório" }),
   document: zodCNPJ(),
   contactPerson: z.string().optional(),
@@ -37,4 +37,4 @@ export const createCustomerSchema = z.object({
   stateRegistration: z.string(),
 }).strict();
 
-export type CreateCustomerSchema = z.infer<typeof createCustomerSchema>
+export type UpdateCustomerSchema = z.infer<typeof updateCustomerSchema>

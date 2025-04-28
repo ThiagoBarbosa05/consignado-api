@@ -4,6 +4,7 @@ import { ZodError } from "zod";
 import { prisma } from "../lib/prisma";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken"
+import "dotenv/config"
 
 export async function authenticateUserController(req: Request, res: Response) {
   try {
@@ -49,10 +50,7 @@ export async function authenticateUserController(req: Request, res: Response) {
       roles: user.roles.map(role => role.role.name),
       permissions: user.roles.map(role => role.role.permissions.map(permission => permission.permission.name))
     }, 
-    "IKNFABFUIABVFUIOAVBFUIOAVBFUIOAVWIOFVY8IOEVFYAVFIYVSDF78T3ER5T6234FGV5YUVB", 
-    {
-      expiresIn: "5h"
-    })
+    process.env.JWT_SECRET!)
 
     res.status(200).send({ accessToken })
 
@@ -62,6 +60,6 @@ export async function authenticateUserController(req: Request, res: Response) {
     }
 
      console.error("Erro no /authenticate:", error)
-     res.status(500).send("Internal Server Error")
+     res.status(500).send({message: "Internal Server Error"})
   }
 }

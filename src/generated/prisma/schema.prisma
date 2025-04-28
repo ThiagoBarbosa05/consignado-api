@@ -20,14 +20,14 @@ model Customer {
   document          String  @unique
   contactPerson     String? @map("contact_person")
   email             String? @unique
-  cellphone         BigInt?
-  businessPhone     BigInt? @map("business_phone")
-  stateRegistration String  @map("state_registration")
+  cellphone         String?
+  businessPhone     String? @map("business_phone")
+  stateRegistration String  @unique @map("state_registration")
 
   createdAt  DateTime  @default(now()) @map("created_at")
   updatedAt  DateTime? @updatedAt @map("updated_at")
   disabledAt DateTime? @map("disabled_at")
-  Address    Address?
+  address    Address?
   users      User[]
 
   @@index([name])
@@ -36,10 +36,10 @@ model Customer {
 
 model Address {
   id            String  @id @default(uuid())
-  streetAddress String
-  zipCode       String
-  state         String
-  city          String
+  streetAddress String?
+  zipCode       String?
+  state         String?
+  city          String?
   neighborhood  String?
   number        String?
 
@@ -73,9 +73,10 @@ model Role {
 }
 
 model Permission {
-  id    String           @id @default(uuid())
-  name  String           @unique
-  roles RolePermission[]
+  id          String           @id @default(uuid())
+  name        String           @unique
+  description String?
+  roles       RolePermission[]
 
   @@map("permissions")
 }
