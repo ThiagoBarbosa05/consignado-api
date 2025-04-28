@@ -12,25 +12,25 @@ export async function authenticateUserController(req: Request, res: Response) {
 
     const user = await prisma.user.findUnique({ 
       where: {email},
-      include: {
+      select: {
+        password: true,
+        id: true,
+        email: true,
         roles: {
-          include: {
+          select: {
             role: {
-              include: {
+              select: {
+                name: true,
                 permissions: {
-                  include: {
-                    permission: {
-                      select: {
-                        name: true
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+                  select: {
+                    permission: { select: { name: true } },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     })
 
     if(!user) {
@@ -47,8 +47,8 @@ export async function authenticateUserController(req: Request, res: Response) {
 
     const accessToken = jwt.sign({
       sub: user.id,
-      roles: user.roles.map(role => role.role.name),
-      permissions: user.roles.map(role => role.role.permissions.map(permission => permission.permission.name))
+      roles: user.roles.flatMap(role => role.role.name),
+      permissions: user.roles.flatMap(role => role.role.permissions.map(permission => permission.permission.name))
     }, 
     process.env.JWT_SECRET!)
 
