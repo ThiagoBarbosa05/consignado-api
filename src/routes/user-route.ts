@@ -3,8 +3,10 @@ import { authenticateUserSchema } from "../schemas/authenticate-user-schema";
 import { ZodError } from "zod";
 import { authenticateUserController } from "../controllers/authenticate-user-controller";
 import { createUserController } from "../controllers/create-user";
+import { authenticate } from "../middleware.ts/authenticate";
+import { checkPermission } from "../middleware.ts/check-permissions";
 
 export const userRoute = Router()
 
 userRoute.post("/authenticate", authenticateUserController)
-userRoute.post("/users", createUserController)
+userRoute.post("/users", authenticate, checkPermission("create:user"),createUserController)
