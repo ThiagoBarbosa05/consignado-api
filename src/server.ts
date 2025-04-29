@@ -19,7 +19,7 @@ app.use("/api", userRoute)
 
 app.get('/api/metrics', dashboardMetricsController)
 
-app.listen(4000, () => {
+app.listen(3000, () => {
   console.log('Server is listening on http://localhost:4000')
 })
 
