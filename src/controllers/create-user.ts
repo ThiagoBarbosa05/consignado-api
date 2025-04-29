@@ -36,6 +36,8 @@ export async function createUserController(req: Request, res: Response) {
         roleId: newUser.roleId,
       }
     })
+
+    res.status(201).send({userId: userCreated.id})
     
     return
   }

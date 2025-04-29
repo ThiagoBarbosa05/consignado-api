@@ -3,6 +3,9 @@ import { prisma } from "../lib/prisma";
 
 export async function listCustomersController(req: Request, res: Response) {
   try {
+    const query = req.query
+
+    console.log(query.search)
     const customers = await prisma.customer.findMany(
       {
         select: {
@@ -13,7 +16,20 @@ export async function listCustomersController(req: Request, res: Response) {
           cellphone: true,
           businessPhone: true
         },
-        where: { disabledAt: null }
+        where: { 
+          AND: [
+            {disabledAt: null},
+            { 
+              name: {
+                contains: query.search as string,
+                mode: "insensitive"
+              }
+            }
+          ]
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
       }
     )
 
