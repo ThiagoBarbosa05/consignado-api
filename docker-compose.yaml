@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: controle-estoque-db
   api:
-    image: thiago0503/controle-estoque-api:v1
+    image: thiago0503/controle-estoque-api:v2
     ports:
       - 4000:4000
     env_file: .env
