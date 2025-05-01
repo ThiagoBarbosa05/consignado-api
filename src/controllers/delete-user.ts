@@ -16,7 +16,7 @@ export async function deleteUserController(req: Request, res: Response) {
   } 
   catch (error) {
     console.log(error) 
-    res.send(500).send({message: "Internal Server Error"})
+    res.status(500).send({message: "Internal Server Error"})
     return
   }
 }
