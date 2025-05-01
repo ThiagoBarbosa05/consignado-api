@@ -48,6 +48,38 @@ export type UserRole = $Result.DefaultSelection<Prisma.$UserRolePayload>
  * 
  */
 export type RolePermission = $Result.DefaultSelection<Prisma.$RolePermissionPayload>
+/**
+ * Model Wine
+ * 
+ */
+export type Wine = $Result.DefaultSelection<Prisma.$WinePayload>
+/**
+ * Model Consigned
+ * 
+ */
+export type Consigned = $Result.DefaultSelection<Prisma.$ConsignedPayload>
+/**
+ * Model WineOnConsigned
+ * 
+ */
+export type WineOnConsigned = $Result.DefaultSelection<Prisma.$WineOnConsignedPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const ConsignedStatus: {
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  CONCLUÍDO: 'CONCLUÍDO'
+};
+
+export type ConsignedStatus = (typeof ConsignedStatus)[keyof typeof ConsignedStatus]
+
+}
+
+export type ConsignedStatus = $Enums.ConsignedStatus
+
+export const ConsignedStatus: typeof $Enums.ConsignedStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -243,6 +275,36 @@ export class PrismaClient<
     * ```
     */
   get rolePermission(): Prisma.RolePermissionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.wine`: Exposes CRUD operations for the **Wine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wines
+    * const wines = await prisma.wine.findMany()
+    * ```
+    */
+  get wine(): Prisma.WineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.consigned`: Exposes CRUD operations for the **Consigned** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Consigneds
+    * const consigneds = await prisma.consigned.findMany()
+    * ```
+    */
+  get consigned(): Prisma.ConsignedDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.wineOnConsigned`: Exposes CRUD operations for the **WineOnConsigned** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WineOnConsigneds
+    * const wineOnConsigneds = await prisma.wineOnConsigned.findMany()
+    * ```
+    */
+  get wineOnConsigned(): Prisma.WineOnConsignedDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -689,7 +751,10 @@ export namespace Prisma {
     Role: 'Role',
     Permission: 'Permission',
     UserRole: 'UserRole',
-    RolePermission: 'RolePermission'
+    RolePermission: 'RolePermission',
+    Wine: 'Wine',
+    Consigned: 'Consigned',
+    WineOnConsigned: 'WineOnConsigned'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -708,7 +773,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "customer" | "address" | "user" | "role" | "permission" | "userRole" | "rolePermission"
+      modelProps: "customer" | "address" | "user" | "role" | "permission" | "userRole" | "rolePermission" | "wine" | "consigned" | "wineOnConsigned"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1230,6 +1295,228 @@ export namespace Prisma {
           }
         }
       }
+      Wine: {
+        payload: Prisma.$WinePayload<ExtArgs>
+        fields: Prisma.WineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>
+          }
+          findFirst: {
+            args: Prisma.WineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>
+          }
+          findMany: {
+            args: Prisma.WineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>[]
+          }
+          create: {
+            args: Prisma.WineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>
+          }
+          createMany: {
+            args: Prisma.WineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>[]
+          }
+          delete: {
+            args: Prisma.WineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>
+          }
+          update: {
+            args: Prisma.WineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>
+          }
+          deleteMany: {
+            args: Prisma.WineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>[]
+          }
+          upsert: {
+            args: Prisma.WineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinePayload>
+          }
+          aggregate: {
+            args: Prisma.WineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWine>
+          }
+          groupBy: {
+            args: Prisma.WineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WineCountArgs<ExtArgs>
+            result: $Utils.Optional<WineCountAggregateOutputType> | number
+          }
+        }
+      }
+      Consigned: {
+        payload: Prisma.$ConsignedPayload<ExtArgs>
+        fields: Prisma.ConsignedFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConsignedFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConsignedFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>
+          }
+          findFirst: {
+            args: Prisma.ConsignedFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConsignedFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>
+          }
+          findMany: {
+            args: Prisma.ConsignedFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>[]
+          }
+          create: {
+            args: Prisma.ConsignedCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>
+          }
+          createMany: {
+            args: Prisma.ConsignedCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConsignedCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>[]
+          }
+          delete: {
+            args: Prisma.ConsignedDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>
+          }
+          update: {
+            args: Prisma.ConsignedUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConsignedDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConsignedUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ConsignedUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>[]
+          }
+          upsert: {
+            args: Prisma.ConsignedUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConsignedPayload>
+          }
+          aggregate: {
+            args: Prisma.ConsignedAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConsigned>
+          }
+          groupBy: {
+            args: Prisma.ConsignedGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConsignedGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConsignedCountArgs<ExtArgs>
+            result: $Utils.Optional<ConsignedCountAggregateOutputType> | number
+          }
+        }
+      }
+      WineOnConsigned: {
+        payload: Prisma.$WineOnConsignedPayload<ExtArgs>
+        fields: Prisma.WineOnConsignedFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WineOnConsignedFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WineOnConsignedFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>
+          }
+          findFirst: {
+            args: Prisma.WineOnConsignedFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WineOnConsignedFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>
+          }
+          findMany: {
+            args: Prisma.WineOnConsignedFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>[]
+          }
+          create: {
+            args: Prisma.WineOnConsignedCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>
+          }
+          createMany: {
+            args: Prisma.WineOnConsignedCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WineOnConsignedCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>[]
+          }
+          delete: {
+            args: Prisma.WineOnConsignedDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>
+          }
+          update: {
+            args: Prisma.WineOnConsignedUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>
+          }
+          deleteMany: {
+            args: Prisma.WineOnConsignedDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WineOnConsignedUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WineOnConsignedUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>[]
+          }
+          upsert: {
+            args: Prisma.WineOnConsignedUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WineOnConsignedPayload>
+          }
+          aggregate: {
+            args: Prisma.WineOnConsignedAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWineOnConsigned>
+          }
+          groupBy: {
+            args: Prisma.WineOnConsignedGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WineOnConsignedGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WineOnConsignedCountArgs<ExtArgs>
+            result: $Utils.Optional<WineOnConsignedCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1321,6 +1608,9 @@ export namespace Prisma {
     permission?: PermissionOmit
     userRole?: UserRoleOmit
     rolePermission?: RolePermissionOmit
+    wine?: WineOmit
+    consigned?: ConsignedOmit
+    wineOnConsigned?: WineOnConsignedOmit
   }
 
   /* Types for Logging */
@@ -1416,10 +1706,12 @@ export namespace Prisma {
 
   export type CustomerCountOutputType = {
     users: number
+    Consigned: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | CustomerCountOutputTypeCountUsersArgs
+    Consigned?: boolean | CustomerCountOutputTypeCountConsignedArgs
   }
 
   // Custom InputTypes
@@ -1438,6 +1730,13 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountConsignedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConsignedWhereInput
   }
 
 
@@ -1540,6 +1839,68 @@ export namespace Prisma {
    */
   export type PermissionCountOutputTypeCountRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RolePermissionWhereInput
+  }
+
+
+  /**
+   * Count Type WineCountOutputType
+   */
+
+  export type WineCountOutputType = {
+    WineOnConsigned: number
+  }
+
+  export type WineCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    WineOnConsigned?: boolean | WineCountOutputTypeCountWineOnConsignedArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * WineCountOutputType without action
+   */
+  export type WineCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineCountOutputType
+     */
+    select?: WineCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * WineCountOutputType without action
+   */
+  export type WineCountOutputTypeCountWineOnConsignedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WineOnConsignedWhereInput
+  }
+
+
+  /**
+   * Count Type ConsignedCountOutputType
+   */
+
+  export type ConsignedCountOutputType = {
+    winesOnConsigned: number
+  }
+
+  export type ConsignedCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    winesOnConsigned?: boolean | ConsignedCountOutputTypeCountWinesOnConsignedArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ConsignedCountOutputType without action
+   */
+  export type ConsignedCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConsignedCountOutputType
+     */
+    select?: ConsignedCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ConsignedCountOutputType without action
+   */
+  export type ConsignedCountOutputTypeCountWinesOnConsignedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WineOnConsignedWhereInput
   }
 
 
@@ -1761,6 +2122,7 @@ export namespace Prisma {
     disabledAt?: boolean
     address?: boolean | Customer$addressArgs<ExtArgs>
     users?: boolean | Customer$usersArgs<ExtArgs>
+    Consigned?: boolean | Customer$ConsignedArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -1810,6 +2172,7 @@ export namespace Prisma {
   export type CustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     address?: boolean | Customer$addressArgs<ExtArgs>
     users?: boolean | Customer$usersArgs<ExtArgs>
+    Consigned?: boolean | Customer$ConsignedArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1820,6 +2183,7 @@ export namespace Prisma {
     objects: {
       address: Prisma.$AddressPayload<ExtArgs> | null
       users: Prisma.$UserPayload<ExtArgs>[]
+      Consigned: Prisma.$ConsignedPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2229,6 +2593,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     address<T extends Customer$addressArgs<ExtArgs> = {}>(args?: Subset<T, Customer$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     users<T extends Customer$usersArgs<ExtArgs> = {}>(args?: Subset<T, Customer$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Consigned<T extends Customer$ConsignedArgs<ExtArgs> = {}>(args?: Subset<T, Customer$ConsignedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2697,6 +3062,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.Consigned
+   */
+  export type Customer$ConsignedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    where?: ConsignedWhereInput
+    orderBy?: ConsignedOrderByWithRelationInput | ConsignedOrderByWithRelationInput[]
+    cursor?: ConsignedWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConsignedScalarFieldEnum | ConsignedScalarFieldEnum[]
   }
 
   /**
@@ -9106,6 +9495,3358 @@ export namespace Prisma {
 
 
   /**
+   * Model Wine
+   */
+
+  export type AggregateWine = {
+    _count: WineCountAggregateOutputType | null
+    _avg: WineAvgAggregateOutputType | null
+    _sum: WineSumAggregateOutputType | null
+    _min: WineMinAggregateOutputType | null
+    _max: WineMaxAggregateOutputType | null
+  }
+
+  export type WineAvgAggregateOutputType = {
+    harvest: number | null
+    price: number | null
+  }
+
+  export type WineSumAggregateOutputType = {
+    harvest: number | null
+    price: number | null
+  }
+
+  export type WineMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    harvest: number | null
+    type: string | null
+    price: number | null
+    producer: string | null
+    country: string | null
+    size: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WineMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    harvest: number | null
+    type: string | null
+    price: number | null
+    producer: string | null
+    country: string | null
+    size: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WineCountAggregateOutputType = {
+    id: number
+    name: number
+    harvest: number
+    type: number
+    price: number
+    producer: number
+    country: number
+    size: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type WineAvgAggregateInputType = {
+    harvest?: true
+    price?: true
+  }
+
+  export type WineSumAggregateInputType = {
+    harvest?: true
+    price?: true
+  }
+
+  export type WineMinAggregateInputType = {
+    id?: true
+    name?: true
+    harvest?: true
+    type?: true
+    price?: true
+    producer?: true
+    country?: true
+    size?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WineMaxAggregateInputType = {
+    id?: true
+    name?: true
+    harvest?: true
+    type?: true
+    price?: true
+    producer?: true
+    country?: true
+    size?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WineCountAggregateInputType = {
+    id?: true
+    name?: true
+    harvest?: true
+    type?: true
+    price?: true
+    producer?: true
+    country?: true
+    size?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type WineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Wine to aggregate.
+     */
+    where?: WineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wines to fetch.
+     */
+    orderBy?: WineOrderByWithRelationInput | WineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Wines
+    **/
+    _count?: true | WineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WineAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WineSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WineMaxAggregateInputType
+  }
+
+  export type GetWineAggregateType<T extends WineAggregateArgs> = {
+        [P in keyof T & keyof AggregateWine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWine[P]>
+      : GetScalarType<T[P], AggregateWine[P]>
+  }
+
+
+
+
+  export type WineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WineWhereInput
+    orderBy?: WineOrderByWithAggregationInput | WineOrderByWithAggregationInput[]
+    by: WineScalarFieldEnum[] | WineScalarFieldEnum
+    having?: WineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WineCountAggregateInputType | true
+    _avg?: WineAvgAggregateInputType
+    _sum?: WineSumAggregateInputType
+    _min?: WineMinAggregateInputType
+    _max?: WineMaxAggregateInputType
+  }
+
+  export type WineGroupByOutputType = {
+    id: string
+    name: string
+    harvest: number | null
+    type: string
+    price: number
+    producer: string | null
+    country: string | null
+    size: string
+    createdAt: Date
+    updatedAt: Date | null
+    _count: WineCountAggregateOutputType | null
+    _avg: WineAvgAggregateOutputType | null
+    _sum: WineSumAggregateOutputType | null
+    _min: WineMinAggregateOutputType | null
+    _max: WineMaxAggregateOutputType | null
+  }
+
+  type GetWineGroupByPayload<T extends WineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WineGroupByOutputType[P]>
+            : GetScalarType<T[P], WineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    harvest?: boolean
+    type?: boolean
+    price?: boolean
+    producer?: boolean
+    country?: boolean
+    size?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    WineOnConsigned?: boolean | Wine$WineOnConsignedArgs<ExtArgs>
+    _count?: boolean | WineCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["wine"]>
+
+  export type WineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    harvest?: boolean
+    type?: boolean
+    price?: boolean
+    producer?: boolean
+    country?: boolean
+    size?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["wine"]>
+
+  export type WineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    harvest?: boolean
+    type?: boolean
+    price?: boolean
+    producer?: boolean
+    country?: boolean
+    size?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["wine"]>
+
+  export type WineSelectScalar = {
+    id?: boolean
+    name?: boolean
+    harvest?: boolean
+    type?: boolean
+    price?: boolean
+    producer?: boolean
+    country?: boolean
+    size?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type WineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "harvest" | "type" | "price" | "producer" | "country" | "size" | "createdAt" | "updatedAt", ExtArgs["result"]["wine"]>
+  export type WineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    WineOnConsigned?: boolean | Wine$WineOnConsignedArgs<ExtArgs>
+    _count?: boolean | WineCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type WineIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type WineIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $WinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Wine"
+    objects: {
+      WineOnConsigned: Prisma.$WineOnConsignedPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      harvest: number | null
+      type: string
+      price: number
+      producer: string | null
+      country: string | null
+      size: string
+      createdAt: Date
+      updatedAt: Date | null
+    }, ExtArgs["result"]["wine"]>
+    composites: {}
+  }
+
+  type WineGetPayload<S extends boolean | null | undefined | WineDefaultArgs> = $Result.GetResult<Prisma.$WinePayload, S>
+
+  type WineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WineCountAggregateInputType | true
+    }
+
+  export interface WineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Wine'], meta: { name: 'Wine' } }
+    /**
+     * Find zero or one Wine that matches the filter.
+     * @param {WineFindUniqueArgs} args - Arguments to find a Wine
+     * @example
+     * // Get one Wine
+     * const wine = await prisma.wine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WineFindUniqueArgs>(args: SelectSubset<T, WineFindUniqueArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Wine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WineFindUniqueOrThrowArgs} args - Arguments to find a Wine
+     * @example
+     * // Get one Wine
+     * const wine = await prisma.wine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WineFindUniqueOrThrowArgs>(args: SelectSubset<T, WineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Wine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineFindFirstArgs} args - Arguments to find a Wine
+     * @example
+     * // Get one Wine
+     * const wine = await prisma.wine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WineFindFirstArgs>(args?: SelectSubset<T, WineFindFirstArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Wine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineFindFirstOrThrowArgs} args - Arguments to find a Wine
+     * @example
+     * // Get one Wine
+     * const wine = await prisma.wine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WineFindFirstOrThrowArgs>(args?: SelectSubset<T, WineFindFirstOrThrowArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Wines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Wines
+     * const wines = await prisma.wine.findMany()
+     * 
+     * // Get first 10 Wines
+     * const wines = await prisma.wine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const wineWithIdOnly = await prisma.wine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WineFindManyArgs>(args?: SelectSubset<T, WineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Wine.
+     * @param {WineCreateArgs} args - Arguments to create a Wine.
+     * @example
+     * // Create one Wine
+     * const Wine = await prisma.wine.create({
+     *   data: {
+     *     // ... data to create a Wine
+     *   }
+     * })
+     * 
+     */
+    create<T extends WineCreateArgs>(args: SelectSubset<T, WineCreateArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Wines.
+     * @param {WineCreateManyArgs} args - Arguments to create many Wines.
+     * @example
+     * // Create many Wines
+     * const wine = await prisma.wine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WineCreateManyArgs>(args?: SelectSubset<T, WineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Wines and returns the data saved in the database.
+     * @param {WineCreateManyAndReturnArgs} args - Arguments to create many Wines.
+     * @example
+     * // Create many Wines
+     * const wine = await prisma.wine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Wines and only return the `id`
+     * const wineWithIdOnly = await prisma.wine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WineCreateManyAndReturnArgs>(args?: SelectSubset<T, WineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Wine.
+     * @param {WineDeleteArgs} args - Arguments to delete one Wine.
+     * @example
+     * // Delete one Wine
+     * const Wine = await prisma.wine.delete({
+     *   where: {
+     *     // ... filter to delete one Wine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WineDeleteArgs>(args: SelectSubset<T, WineDeleteArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Wine.
+     * @param {WineUpdateArgs} args - Arguments to update one Wine.
+     * @example
+     * // Update one Wine
+     * const wine = await prisma.wine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WineUpdateArgs>(args: SelectSubset<T, WineUpdateArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Wines.
+     * @param {WineDeleteManyArgs} args - Arguments to filter Wines to delete.
+     * @example
+     * // Delete a few Wines
+     * const { count } = await prisma.wine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WineDeleteManyArgs>(args?: SelectSubset<T, WineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Wines
+     * const wine = await prisma.wine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WineUpdateManyArgs>(args: SelectSubset<T, WineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wines and returns the data updated in the database.
+     * @param {WineUpdateManyAndReturnArgs} args - Arguments to update many Wines.
+     * @example
+     * // Update many Wines
+     * const wine = await prisma.wine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Wines and only return the `id`
+     * const wineWithIdOnly = await prisma.wine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WineUpdateManyAndReturnArgs>(args: SelectSubset<T, WineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Wine.
+     * @param {WineUpsertArgs} args - Arguments to update or create a Wine.
+     * @example
+     * // Update or create a Wine
+     * const wine = await prisma.wine.upsert({
+     *   create: {
+     *     // ... data to create a Wine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Wine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WineUpsertArgs>(args: SelectSubset<T, WineUpsertArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Wines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineCountArgs} args - Arguments to filter Wines to count.
+     * @example
+     * // Count the number of Wines
+     * const count = await prisma.wine.count({
+     *   where: {
+     *     // ... the filter for the Wines we want to count
+     *   }
+     * })
+    **/
+    count<T extends WineCountArgs>(
+      args?: Subset<T, WineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Wine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WineAggregateArgs>(args: Subset<T, WineAggregateArgs>): Prisma.PrismaPromise<GetWineAggregateType<T>>
+
+    /**
+     * Group by Wine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WineGroupByArgs['orderBy'] }
+        : { orderBy?: WineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Wine model
+   */
+  readonly fields: WineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Wine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    WineOnConsigned<T extends Wine$WineOnConsignedArgs<ExtArgs> = {}>(args?: Subset<T, Wine$WineOnConsignedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Wine model
+   */
+  interface WineFieldRefs {
+    readonly id: FieldRef<"Wine", 'String'>
+    readonly name: FieldRef<"Wine", 'String'>
+    readonly harvest: FieldRef<"Wine", 'Int'>
+    readonly type: FieldRef<"Wine", 'String'>
+    readonly price: FieldRef<"Wine", 'Int'>
+    readonly producer: FieldRef<"Wine", 'String'>
+    readonly country: FieldRef<"Wine", 'String'>
+    readonly size: FieldRef<"Wine", 'String'>
+    readonly createdAt: FieldRef<"Wine", 'DateTime'>
+    readonly updatedAt: FieldRef<"Wine", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Wine findUnique
+   */
+  export type WineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * Filter, which Wine to fetch.
+     */
+    where: WineWhereUniqueInput
+  }
+
+  /**
+   * Wine findUniqueOrThrow
+   */
+  export type WineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * Filter, which Wine to fetch.
+     */
+    where: WineWhereUniqueInput
+  }
+
+  /**
+   * Wine findFirst
+   */
+  export type WineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * Filter, which Wine to fetch.
+     */
+    where?: WineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wines to fetch.
+     */
+    orderBy?: WineOrderByWithRelationInput | WineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wines.
+     */
+    cursor?: WineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wines.
+     */
+    distinct?: WineScalarFieldEnum | WineScalarFieldEnum[]
+  }
+
+  /**
+   * Wine findFirstOrThrow
+   */
+  export type WineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * Filter, which Wine to fetch.
+     */
+    where?: WineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wines to fetch.
+     */
+    orderBy?: WineOrderByWithRelationInput | WineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wines.
+     */
+    cursor?: WineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wines.
+     */
+    distinct?: WineScalarFieldEnum | WineScalarFieldEnum[]
+  }
+
+  /**
+   * Wine findMany
+   */
+  export type WineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * Filter, which Wines to fetch.
+     */
+    where?: WineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wines to fetch.
+     */
+    orderBy?: WineOrderByWithRelationInput | WineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Wines.
+     */
+    cursor?: WineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wines.
+     */
+    skip?: number
+    distinct?: WineScalarFieldEnum | WineScalarFieldEnum[]
+  }
+
+  /**
+   * Wine create
+   */
+  export type WineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Wine.
+     */
+    data: XOR<WineCreateInput, WineUncheckedCreateInput>
+  }
+
+  /**
+   * Wine createMany
+   */
+  export type WineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Wines.
+     */
+    data: WineCreateManyInput | WineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Wine createManyAndReturn
+   */
+  export type WineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * The data used to create many Wines.
+     */
+    data: WineCreateManyInput | WineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Wine update
+   */
+  export type WineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Wine.
+     */
+    data: XOR<WineUpdateInput, WineUncheckedUpdateInput>
+    /**
+     * Choose, which Wine to update.
+     */
+    where: WineWhereUniqueInput
+  }
+
+  /**
+   * Wine updateMany
+   */
+  export type WineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Wines.
+     */
+    data: XOR<WineUpdateManyMutationInput, WineUncheckedUpdateManyInput>
+    /**
+     * Filter which Wines to update
+     */
+    where?: WineWhereInput
+    /**
+     * Limit how many Wines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Wine updateManyAndReturn
+   */
+  export type WineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * The data used to update Wines.
+     */
+    data: XOR<WineUpdateManyMutationInput, WineUncheckedUpdateManyInput>
+    /**
+     * Filter which Wines to update
+     */
+    where?: WineWhereInput
+    /**
+     * Limit how many Wines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Wine upsert
+   */
+  export type WineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Wine to update in case it exists.
+     */
+    where: WineWhereUniqueInput
+    /**
+     * In case the Wine found by the `where` argument doesn't exist, create a new Wine with this data.
+     */
+    create: XOR<WineCreateInput, WineUncheckedCreateInput>
+    /**
+     * In case the Wine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WineUpdateInput, WineUncheckedUpdateInput>
+  }
+
+  /**
+   * Wine delete
+   */
+  export type WineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+    /**
+     * Filter which Wine to delete.
+     */
+    where: WineWhereUniqueInput
+  }
+
+  /**
+   * Wine deleteMany
+   */
+  export type WineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Wines to delete
+     */
+    where?: WineWhereInput
+    /**
+     * Limit how many Wines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Wine.WineOnConsigned
+   */
+  export type Wine$WineOnConsignedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    where?: WineOnConsignedWhereInput
+    orderBy?: WineOnConsignedOrderByWithRelationInput | WineOnConsignedOrderByWithRelationInput[]
+    cursor?: WineOnConsignedWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WineOnConsignedScalarFieldEnum | WineOnConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * Wine without action
+   */
+  export type WineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Wine
+     */
+    select?: WineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Wine
+     */
+    omit?: WineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Consigned
+   */
+
+  export type AggregateConsigned = {
+    _count: ConsignedCountAggregateOutputType | null
+    _min: ConsignedMinAggregateOutputType | null
+    _max: ConsignedMaxAggregateOutputType | null
+  }
+
+  export type ConsignedMinAggregateOutputType = {
+    id: string | null
+    customerId: string | null
+    status: $Enums.ConsignedStatus | null
+    completedIn: Date | null
+    createdAt: Date | null
+  }
+
+  export type ConsignedMaxAggregateOutputType = {
+    id: string | null
+    customerId: string | null
+    status: $Enums.ConsignedStatus | null
+    completedIn: Date | null
+    createdAt: Date | null
+  }
+
+  export type ConsignedCountAggregateOutputType = {
+    id: number
+    customerId: number
+    status: number
+    completedIn: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ConsignedMinAggregateInputType = {
+    id?: true
+    customerId?: true
+    status?: true
+    completedIn?: true
+    createdAt?: true
+  }
+
+  export type ConsignedMaxAggregateInputType = {
+    id?: true
+    customerId?: true
+    status?: true
+    completedIn?: true
+    createdAt?: true
+  }
+
+  export type ConsignedCountAggregateInputType = {
+    id?: true
+    customerId?: true
+    status?: true
+    completedIn?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ConsignedAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Consigned to aggregate.
+     */
+    where?: ConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Consigneds to fetch.
+     */
+    orderBy?: ConsignedOrderByWithRelationInput | ConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Consigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Consigneds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Consigneds
+    **/
+    _count?: true | ConsignedCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConsignedMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConsignedMaxAggregateInputType
+  }
+
+  export type GetConsignedAggregateType<T extends ConsignedAggregateArgs> = {
+        [P in keyof T & keyof AggregateConsigned]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConsigned[P]>
+      : GetScalarType<T[P], AggregateConsigned[P]>
+  }
+
+
+
+
+  export type ConsignedGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConsignedWhereInput
+    orderBy?: ConsignedOrderByWithAggregationInput | ConsignedOrderByWithAggregationInput[]
+    by: ConsignedScalarFieldEnum[] | ConsignedScalarFieldEnum
+    having?: ConsignedScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConsignedCountAggregateInputType | true
+    _min?: ConsignedMinAggregateInputType
+    _max?: ConsignedMaxAggregateInputType
+  }
+
+  export type ConsignedGroupByOutputType = {
+    id: string
+    customerId: string
+    status: $Enums.ConsignedStatus
+    completedIn: Date | null
+    createdAt: Date
+    _count: ConsignedCountAggregateOutputType | null
+    _min: ConsignedMinAggregateOutputType | null
+    _max: ConsignedMaxAggregateOutputType | null
+  }
+
+  type GetConsignedGroupByPayload<T extends ConsignedGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConsignedGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConsignedGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConsignedGroupByOutputType[P]>
+            : GetScalarType<T[P], ConsignedGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConsignedSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customerId?: boolean
+    status?: boolean
+    completedIn?: boolean
+    createdAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    winesOnConsigned?: boolean | Consigned$winesOnConsignedArgs<ExtArgs>
+    _count?: boolean | ConsignedCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["consigned"]>
+
+  export type ConsignedSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customerId?: boolean
+    status?: boolean
+    completedIn?: boolean
+    createdAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["consigned"]>
+
+  export type ConsignedSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customerId?: boolean
+    status?: boolean
+    completedIn?: boolean
+    createdAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["consigned"]>
+
+  export type ConsignedSelectScalar = {
+    id?: boolean
+    customerId?: boolean
+    status?: boolean
+    completedIn?: boolean
+    createdAt?: boolean
+  }
+
+  export type ConsignedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "status" | "completedIn" | "createdAt", ExtArgs["result"]["consigned"]>
+  export type ConsignedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    winesOnConsigned?: boolean | Consigned$winesOnConsignedArgs<ExtArgs>
+    _count?: boolean | ConsignedCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ConsignedIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+  export type ConsignedIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+
+  export type $ConsignedPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Consigned"
+    objects: {
+      customer: Prisma.$CustomerPayload<ExtArgs>
+      winesOnConsigned: Prisma.$WineOnConsignedPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      customerId: string
+      status: $Enums.ConsignedStatus
+      completedIn: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["consigned"]>
+    composites: {}
+  }
+
+  type ConsignedGetPayload<S extends boolean | null | undefined | ConsignedDefaultArgs> = $Result.GetResult<Prisma.$ConsignedPayload, S>
+
+  type ConsignedCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ConsignedFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ConsignedCountAggregateInputType | true
+    }
+
+  export interface ConsignedDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Consigned'], meta: { name: 'Consigned' } }
+    /**
+     * Find zero or one Consigned that matches the filter.
+     * @param {ConsignedFindUniqueArgs} args - Arguments to find a Consigned
+     * @example
+     * // Get one Consigned
+     * const consigned = await prisma.consigned.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConsignedFindUniqueArgs>(args: SelectSubset<T, ConsignedFindUniqueArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Consigned that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ConsignedFindUniqueOrThrowArgs} args - Arguments to find a Consigned
+     * @example
+     * // Get one Consigned
+     * const consigned = await prisma.consigned.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConsignedFindUniqueOrThrowArgs>(args: SelectSubset<T, ConsignedFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Consigned that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedFindFirstArgs} args - Arguments to find a Consigned
+     * @example
+     * // Get one Consigned
+     * const consigned = await prisma.consigned.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConsignedFindFirstArgs>(args?: SelectSubset<T, ConsignedFindFirstArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Consigned that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedFindFirstOrThrowArgs} args - Arguments to find a Consigned
+     * @example
+     * // Get one Consigned
+     * const consigned = await prisma.consigned.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConsignedFindFirstOrThrowArgs>(args?: SelectSubset<T, ConsignedFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Consigneds that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Consigneds
+     * const consigneds = await prisma.consigned.findMany()
+     * 
+     * // Get first 10 Consigneds
+     * const consigneds = await prisma.consigned.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const consignedWithIdOnly = await prisma.consigned.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConsignedFindManyArgs>(args?: SelectSubset<T, ConsignedFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Consigned.
+     * @param {ConsignedCreateArgs} args - Arguments to create a Consigned.
+     * @example
+     * // Create one Consigned
+     * const Consigned = await prisma.consigned.create({
+     *   data: {
+     *     // ... data to create a Consigned
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConsignedCreateArgs>(args: SelectSubset<T, ConsignedCreateArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Consigneds.
+     * @param {ConsignedCreateManyArgs} args - Arguments to create many Consigneds.
+     * @example
+     * // Create many Consigneds
+     * const consigned = await prisma.consigned.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConsignedCreateManyArgs>(args?: SelectSubset<T, ConsignedCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Consigneds and returns the data saved in the database.
+     * @param {ConsignedCreateManyAndReturnArgs} args - Arguments to create many Consigneds.
+     * @example
+     * // Create many Consigneds
+     * const consigned = await prisma.consigned.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Consigneds and only return the `id`
+     * const consignedWithIdOnly = await prisma.consigned.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConsignedCreateManyAndReturnArgs>(args?: SelectSubset<T, ConsignedCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Consigned.
+     * @param {ConsignedDeleteArgs} args - Arguments to delete one Consigned.
+     * @example
+     * // Delete one Consigned
+     * const Consigned = await prisma.consigned.delete({
+     *   where: {
+     *     // ... filter to delete one Consigned
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConsignedDeleteArgs>(args: SelectSubset<T, ConsignedDeleteArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Consigned.
+     * @param {ConsignedUpdateArgs} args - Arguments to update one Consigned.
+     * @example
+     * // Update one Consigned
+     * const consigned = await prisma.consigned.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConsignedUpdateArgs>(args: SelectSubset<T, ConsignedUpdateArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Consigneds.
+     * @param {ConsignedDeleteManyArgs} args - Arguments to filter Consigneds to delete.
+     * @example
+     * // Delete a few Consigneds
+     * const { count } = await prisma.consigned.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConsignedDeleteManyArgs>(args?: SelectSubset<T, ConsignedDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Consigneds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Consigneds
+     * const consigned = await prisma.consigned.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConsignedUpdateManyArgs>(args: SelectSubset<T, ConsignedUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Consigneds and returns the data updated in the database.
+     * @param {ConsignedUpdateManyAndReturnArgs} args - Arguments to update many Consigneds.
+     * @example
+     * // Update many Consigneds
+     * const consigned = await prisma.consigned.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Consigneds and only return the `id`
+     * const consignedWithIdOnly = await prisma.consigned.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ConsignedUpdateManyAndReturnArgs>(args: SelectSubset<T, ConsignedUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Consigned.
+     * @param {ConsignedUpsertArgs} args - Arguments to update or create a Consigned.
+     * @example
+     * // Update or create a Consigned
+     * const consigned = await prisma.consigned.upsert({
+     *   create: {
+     *     // ... data to create a Consigned
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Consigned we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConsignedUpsertArgs>(args: SelectSubset<T, ConsignedUpsertArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Consigneds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedCountArgs} args - Arguments to filter Consigneds to count.
+     * @example
+     * // Count the number of Consigneds
+     * const count = await prisma.consigned.count({
+     *   where: {
+     *     // ... the filter for the Consigneds we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConsignedCountArgs>(
+      args?: Subset<T, ConsignedCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConsignedCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Consigned.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConsignedAggregateArgs>(args: Subset<T, ConsignedAggregateArgs>): Prisma.PrismaPromise<GetConsignedAggregateType<T>>
+
+    /**
+     * Group by Consigned.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConsignedGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConsignedGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConsignedGroupByArgs['orderBy'] }
+        : { orderBy?: ConsignedGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConsignedGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConsignedGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Consigned model
+   */
+  readonly fields: ConsignedFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Consigned.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConsignedClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    winesOnConsigned<T extends Consigned$winesOnConsignedArgs<ExtArgs> = {}>(args?: Subset<T, Consigned$winesOnConsignedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Consigned model
+   */
+  interface ConsignedFieldRefs {
+    readonly id: FieldRef<"Consigned", 'String'>
+    readonly customerId: FieldRef<"Consigned", 'String'>
+    readonly status: FieldRef<"Consigned", 'ConsignedStatus'>
+    readonly completedIn: FieldRef<"Consigned", 'DateTime'>
+    readonly createdAt: FieldRef<"Consigned", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Consigned findUnique
+   */
+  export type ConsignedFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which Consigned to fetch.
+     */
+    where: ConsignedWhereUniqueInput
+  }
+
+  /**
+   * Consigned findUniqueOrThrow
+   */
+  export type ConsignedFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which Consigned to fetch.
+     */
+    where: ConsignedWhereUniqueInput
+  }
+
+  /**
+   * Consigned findFirst
+   */
+  export type ConsignedFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which Consigned to fetch.
+     */
+    where?: ConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Consigneds to fetch.
+     */
+    orderBy?: ConsignedOrderByWithRelationInput | ConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Consigneds.
+     */
+    cursor?: ConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Consigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Consigneds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Consigneds.
+     */
+    distinct?: ConsignedScalarFieldEnum | ConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * Consigned findFirstOrThrow
+   */
+  export type ConsignedFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which Consigned to fetch.
+     */
+    where?: ConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Consigneds to fetch.
+     */
+    orderBy?: ConsignedOrderByWithRelationInput | ConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Consigneds.
+     */
+    cursor?: ConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Consigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Consigneds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Consigneds.
+     */
+    distinct?: ConsignedScalarFieldEnum | ConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * Consigned findMany
+   */
+  export type ConsignedFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which Consigneds to fetch.
+     */
+    where?: ConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Consigneds to fetch.
+     */
+    orderBy?: ConsignedOrderByWithRelationInput | ConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Consigneds.
+     */
+    cursor?: ConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Consigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Consigneds.
+     */
+    skip?: number
+    distinct?: ConsignedScalarFieldEnum | ConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * Consigned create
+   */
+  export type ConsignedCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Consigned.
+     */
+    data: XOR<ConsignedCreateInput, ConsignedUncheckedCreateInput>
+  }
+
+  /**
+   * Consigned createMany
+   */
+  export type ConsignedCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Consigneds.
+     */
+    data: ConsignedCreateManyInput | ConsignedCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Consigned createManyAndReturn
+   */
+  export type ConsignedCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * The data used to create many Consigneds.
+     */
+    data: ConsignedCreateManyInput | ConsignedCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Consigned update
+   */
+  export type ConsignedUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Consigned.
+     */
+    data: XOR<ConsignedUpdateInput, ConsignedUncheckedUpdateInput>
+    /**
+     * Choose, which Consigned to update.
+     */
+    where: ConsignedWhereUniqueInput
+  }
+
+  /**
+   * Consigned updateMany
+   */
+  export type ConsignedUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Consigneds.
+     */
+    data: XOR<ConsignedUpdateManyMutationInput, ConsignedUncheckedUpdateManyInput>
+    /**
+     * Filter which Consigneds to update
+     */
+    where?: ConsignedWhereInput
+    /**
+     * Limit how many Consigneds to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Consigned updateManyAndReturn
+   */
+  export type ConsignedUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * The data used to update Consigneds.
+     */
+    data: XOR<ConsignedUpdateManyMutationInput, ConsignedUncheckedUpdateManyInput>
+    /**
+     * Filter which Consigneds to update
+     */
+    where?: ConsignedWhereInput
+    /**
+     * Limit how many Consigneds to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Consigned upsert
+   */
+  export type ConsignedUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Consigned to update in case it exists.
+     */
+    where: ConsignedWhereUniqueInput
+    /**
+     * In case the Consigned found by the `where` argument doesn't exist, create a new Consigned with this data.
+     */
+    create: XOR<ConsignedCreateInput, ConsignedUncheckedCreateInput>
+    /**
+     * In case the Consigned was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConsignedUpdateInput, ConsignedUncheckedUpdateInput>
+  }
+
+  /**
+   * Consigned delete
+   */
+  export type ConsignedDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+    /**
+     * Filter which Consigned to delete.
+     */
+    where: ConsignedWhereUniqueInput
+  }
+
+  /**
+   * Consigned deleteMany
+   */
+  export type ConsignedDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Consigneds to delete
+     */
+    where?: ConsignedWhereInput
+    /**
+     * Limit how many Consigneds to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Consigned.winesOnConsigned
+   */
+  export type Consigned$winesOnConsignedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    where?: WineOnConsignedWhereInput
+    orderBy?: WineOnConsignedOrderByWithRelationInput | WineOnConsignedOrderByWithRelationInput[]
+    cursor?: WineOnConsignedWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WineOnConsignedScalarFieldEnum | WineOnConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * Consigned without action
+   */
+  export type ConsignedDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Consigned
+     */
+    select?: ConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Consigned
+     */
+    omit?: ConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConsignedInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WineOnConsigned
+   */
+
+  export type AggregateWineOnConsigned = {
+    _count: WineOnConsignedCountAggregateOutputType | null
+    _avg: WineOnConsignedAvgAggregateOutputType | null
+    _sum: WineOnConsignedSumAggregateOutputType | null
+    _min: WineOnConsignedMinAggregateOutputType | null
+    _max: WineOnConsignedMaxAggregateOutputType | null
+  }
+
+  export type WineOnConsignedAvgAggregateOutputType = {
+    balance: number | null
+    count: number | null
+  }
+
+  export type WineOnConsignedSumAggregateOutputType = {
+    balance: number | null
+    count: number | null
+  }
+
+  export type WineOnConsignedMinAggregateOutputType = {
+    consignedId: string | null
+    wineId: string | null
+    balance: number | null
+    count: number | null
+  }
+
+  export type WineOnConsignedMaxAggregateOutputType = {
+    consignedId: string | null
+    wineId: string | null
+    balance: number | null
+    count: number | null
+  }
+
+  export type WineOnConsignedCountAggregateOutputType = {
+    consignedId: number
+    wineId: number
+    balance: number
+    count: number
+    _all: number
+  }
+
+
+  export type WineOnConsignedAvgAggregateInputType = {
+    balance?: true
+    count?: true
+  }
+
+  export type WineOnConsignedSumAggregateInputType = {
+    balance?: true
+    count?: true
+  }
+
+  export type WineOnConsignedMinAggregateInputType = {
+    consignedId?: true
+    wineId?: true
+    balance?: true
+    count?: true
+  }
+
+  export type WineOnConsignedMaxAggregateInputType = {
+    consignedId?: true
+    wineId?: true
+    balance?: true
+    count?: true
+  }
+
+  export type WineOnConsignedCountAggregateInputType = {
+    consignedId?: true
+    wineId?: true
+    balance?: true
+    count?: true
+    _all?: true
+  }
+
+  export type WineOnConsignedAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WineOnConsigned to aggregate.
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WineOnConsigneds to fetch.
+     */
+    orderBy?: WineOnConsignedOrderByWithRelationInput | WineOnConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WineOnConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WineOnConsigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WineOnConsigneds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WineOnConsigneds
+    **/
+    _count?: true | WineOnConsignedCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WineOnConsignedAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WineOnConsignedSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WineOnConsignedMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WineOnConsignedMaxAggregateInputType
+  }
+
+  export type GetWineOnConsignedAggregateType<T extends WineOnConsignedAggregateArgs> = {
+        [P in keyof T & keyof AggregateWineOnConsigned]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWineOnConsigned[P]>
+      : GetScalarType<T[P], AggregateWineOnConsigned[P]>
+  }
+
+
+
+
+  export type WineOnConsignedGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WineOnConsignedWhereInput
+    orderBy?: WineOnConsignedOrderByWithAggregationInput | WineOnConsignedOrderByWithAggregationInput[]
+    by: WineOnConsignedScalarFieldEnum[] | WineOnConsignedScalarFieldEnum
+    having?: WineOnConsignedScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WineOnConsignedCountAggregateInputType | true
+    _avg?: WineOnConsignedAvgAggregateInputType
+    _sum?: WineOnConsignedSumAggregateInputType
+    _min?: WineOnConsignedMinAggregateInputType
+    _max?: WineOnConsignedMaxAggregateInputType
+  }
+
+  export type WineOnConsignedGroupByOutputType = {
+    consignedId: string
+    wineId: string
+    balance: number
+    count: number | null
+    _count: WineOnConsignedCountAggregateOutputType | null
+    _avg: WineOnConsignedAvgAggregateOutputType | null
+    _sum: WineOnConsignedSumAggregateOutputType | null
+    _min: WineOnConsignedMinAggregateOutputType | null
+    _max: WineOnConsignedMaxAggregateOutputType | null
+  }
+
+  type GetWineOnConsignedGroupByPayload<T extends WineOnConsignedGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WineOnConsignedGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WineOnConsignedGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WineOnConsignedGroupByOutputType[P]>
+            : GetScalarType<T[P], WineOnConsignedGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WineOnConsignedSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    consignedId?: boolean
+    wineId?: boolean
+    balance?: boolean
+    count?: boolean
+    consigned?: boolean | ConsignedDefaultArgs<ExtArgs>
+    wines?: boolean | WineDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["wineOnConsigned"]>
+
+  export type WineOnConsignedSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    consignedId?: boolean
+    wineId?: boolean
+    balance?: boolean
+    count?: boolean
+    consigned?: boolean | ConsignedDefaultArgs<ExtArgs>
+    wines?: boolean | WineDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["wineOnConsigned"]>
+
+  export type WineOnConsignedSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    consignedId?: boolean
+    wineId?: boolean
+    balance?: boolean
+    count?: boolean
+    consigned?: boolean | ConsignedDefaultArgs<ExtArgs>
+    wines?: boolean | WineDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["wineOnConsigned"]>
+
+  export type WineOnConsignedSelectScalar = {
+    consignedId?: boolean
+    wineId?: boolean
+    balance?: boolean
+    count?: boolean
+  }
+
+  export type WineOnConsignedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"consignedId" | "wineId" | "balance" | "count", ExtArgs["result"]["wineOnConsigned"]>
+  export type WineOnConsignedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    consigned?: boolean | ConsignedDefaultArgs<ExtArgs>
+    wines?: boolean | WineDefaultArgs<ExtArgs>
+  }
+  export type WineOnConsignedIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    consigned?: boolean | ConsignedDefaultArgs<ExtArgs>
+    wines?: boolean | WineDefaultArgs<ExtArgs>
+  }
+  export type WineOnConsignedIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    consigned?: boolean | ConsignedDefaultArgs<ExtArgs>
+    wines?: boolean | WineDefaultArgs<ExtArgs>
+  }
+
+  export type $WineOnConsignedPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WineOnConsigned"
+    objects: {
+      consigned: Prisma.$ConsignedPayload<ExtArgs>
+      wines: Prisma.$WinePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      consignedId: string
+      wineId: string
+      balance: number
+      count: number | null
+    }, ExtArgs["result"]["wineOnConsigned"]>
+    composites: {}
+  }
+
+  type WineOnConsignedGetPayload<S extends boolean | null | undefined | WineOnConsignedDefaultArgs> = $Result.GetResult<Prisma.$WineOnConsignedPayload, S>
+
+  type WineOnConsignedCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WineOnConsignedFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WineOnConsignedCountAggregateInputType | true
+    }
+
+  export interface WineOnConsignedDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WineOnConsigned'], meta: { name: 'WineOnConsigned' } }
+    /**
+     * Find zero or one WineOnConsigned that matches the filter.
+     * @param {WineOnConsignedFindUniqueArgs} args - Arguments to find a WineOnConsigned
+     * @example
+     * // Get one WineOnConsigned
+     * const wineOnConsigned = await prisma.wineOnConsigned.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WineOnConsignedFindUniqueArgs>(args: SelectSubset<T, WineOnConsignedFindUniqueArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WineOnConsigned that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WineOnConsignedFindUniqueOrThrowArgs} args - Arguments to find a WineOnConsigned
+     * @example
+     * // Get one WineOnConsigned
+     * const wineOnConsigned = await prisma.wineOnConsigned.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WineOnConsignedFindUniqueOrThrowArgs>(args: SelectSubset<T, WineOnConsignedFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WineOnConsigned that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedFindFirstArgs} args - Arguments to find a WineOnConsigned
+     * @example
+     * // Get one WineOnConsigned
+     * const wineOnConsigned = await prisma.wineOnConsigned.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WineOnConsignedFindFirstArgs>(args?: SelectSubset<T, WineOnConsignedFindFirstArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WineOnConsigned that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedFindFirstOrThrowArgs} args - Arguments to find a WineOnConsigned
+     * @example
+     * // Get one WineOnConsigned
+     * const wineOnConsigned = await prisma.wineOnConsigned.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WineOnConsignedFindFirstOrThrowArgs>(args?: SelectSubset<T, WineOnConsignedFindFirstOrThrowArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WineOnConsigneds that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WineOnConsigneds
+     * const wineOnConsigneds = await prisma.wineOnConsigned.findMany()
+     * 
+     * // Get first 10 WineOnConsigneds
+     * const wineOnConsigneds = await prisma.wineOnConsigned.findMany({ take: 10 })
+     * 
+     * // Only select the `consignedId`
+     * const wineOnConsignedWithConsignedIdOnly = await prisma.wineOnConsigned.findMany({ select: { consignedId: true } })
+     * 
+     */
+    findMany<T extends WineOnConsignedFindManyArgs>(args?: SelectSubset<T, WineOnConsignedFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WineOnConsigned.
+     * @param {WineOnConsignedCreateArgs} args - Arguments to create a WineOnConsigned.
+     * @example
+     * // Create one WineOnConsigned
+     * const WineOnConsigned = await prisma.wineOnConsigned.create({
+     *   data: {
+     *     // ... data to create a WineOnConsigned
+     *   }
+     * })
+     * 
+     */
+    create<T extends WineOnConsignedCreateArgs>(args: SelectSubset<T, WineOnConsignedCreateArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WineOnConsigneds.
+     * @param {WineOnConsignedCreateManyArgs} args - Arguments to create many WineOnConsigneds.
+     * @example
+     * // Create many WineOnConsigneds
+     * const wineOnConsigned = await prisma.wineOnConsigned.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WineOnConsignedCreateManyArgs>(args?: SelectSubset<T, WineOnConsignedCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WineOnConsigneds and returns the data saved in the database.
+     * @param {WineOnConsignedCreateManyAndReturnArgs} args - Arguments to create many WineOnConsigneds.
+     * @example
+     * // Create many WineOnConsigneds
+     * const wineOnConsigned = await prisma.wineOnConsigned.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WineOnConsigneds and only return the `consignedId`
+     * const wineOnConsignedWithConsignedIdOnly = await prisma.wineOnConsigned.createManyAndReturn({
+     *   select: { consignedId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WineOnConsignedCreateManyAndReturnArgs>(args?: SelectSubset<T, WineOnConsignedCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WineOnConsigned.
+     * @param {WineOnConsignedDeleteArgs} args - Arguments to delete one WineOnConsigned.
+     * @example
+     * // Delete one WineOnConsigned
+     * const WineOnConsigned = await prisma.wineOnConsigned.delete({
+     *   where: {
+     *     // ... filter to delete one WineOnConsigned
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WineOnConsignedDeleteArgs>(args: SelectSubset<T, WineOnConsignedDeleteArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WineOnConsigned.
+     * @param {WineOnConsignedUpdateArgs} args - Arguments to update one WineOnConsigned.
+     * @example
+     * // Update one WineOnConsigned
+     * const wineOnConsigned = await prisma.wineOnConsigned.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WineOnConsignedUpdateArgs>(args: SelectSubset<T, WineOnConsignedUpdateArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WineOnConsigneds.
+     * @param {WineOnConsignedDeleteManyArgs} args - Arguments to filter WineOnConsigneds to delete.
+     * @example
+     * // Delete a few WineOnConsigneds
+     * const { count } = await prisma.wineOnConsigned.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WineOnConsignedDeleteManyArgs>(args?: SelectSubset<T, WineOnConsignedDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WineOnConsigneds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WineOnConsigneds
+     * const wineOnConsigned = await prisma.wineOnConsigned.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WineOnConsignedUpdateManyArgs>(args: SelectSubset<T, WineOnConsignedUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WineOnConsigneds and returns the data updated in the database.
+     * @param {WineOnConsignedUpdateManyAndReturnArgs} args - Arguments to update many WineOnConsigneds.
+     * @example
+     * // Update many WineOnConsigneds
+     * const wineOnConsigned = await prisma.wineOnConsigned.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WineOnConsigneds and only return the `consignedId`
+     * const wineOnConsignedWithConsignedIdOnly = await prisma.wineOnConsigned.updateManyAndReturn({
+     *   select: { consignedId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WineOnConsignedUpdateManyAndReturnArgs>(args: SelectSubset<T, WineOnConsignedUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WineOnConsigned.
+     * @param {WineOnConsignedUpsertArgs} args - Arguments to update or create a WineOnConsigned.
+     * @example
+     * // Update or create a WineOnConsigned
+     * const wineOnConsigned = await prisma.wineOnConsigned.upsert({
+     *   create: {
+     *     // ... data to create a WineOnConsigned
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WineOnConsigned we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WineOnConsignedUpsertArgs>(args: SelectSubset<T, WineOnConsignedUpsertArgs<ExtArgs>>): Prisma__WineOnConsignedClient<$Result.GetResult<Prisma.$WineOnConsignedPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WineOnConsigneds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedCountArgs} args - Arguments to filter WineOnConsigneds to count.
+     * @example
+     * // Count the number of WineOnConsigneds
+     * const count = await prisma.wineOnConsigned.count({
+     *   where: {
+     *     // ... the filter for the WineOnConsigneds we want to count
+     *   }
+     * })
+    **/
+    count<T extends WineOnConsignedCountArgs>(
+      args?: Subset<T, WineOnConsignedCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WineOnConsignedCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WineOnConsigned.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WineOnConsignedAggregateArgs>(args: Subset<T, WineOnConsignedAggregateArgs>): Prisma.PrismaPromise<GetWineOnConsignedAggregateType<T>>
+
+    /**
+     * Group by WineOnConsigned.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WineOnConsignedGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WineOnConsignedGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WineOnConsignedGroupByArgs['orderBy'] }
+        : { orderBy?: WineOnConsignedGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WineOnConsignedGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWineOnConsignedGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WineOnConsigned model
+   */
+  readonly fields: WineOnConsignedFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WineOnConsigned.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WineOnConsignedClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    consigned<T extends ConsignedDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ConsignedDefaultArgs<ExtArgs>>): Prisma__ConsignedClient<$Result.GetResult<Prisma.$ConsignedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    wines<T extends WineDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WineDefaultArgs<ExtArgs>>): Prisma__WineClient<$Result.GetResult<Prisma.$WinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WineOnConsigned model
+   */
+  interface WineOnConsignedFieldRefs {
+    readonly consignedId: FieldRef<"WineOnConsigned", 'String'>
+    readonly wineId: FieldRef<"WineOnConsigned", 'String'>
+    readonly balance: FieldRef<"WineOnConsigned", 'Int'>
+    readonly count: FieldRef<"WineOnConsigned", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WineOnConsigned findUnique
+   */
+  export type WineOnConsignedFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which WineOnConsigned to fetch.
+     */
+    where: WineOnConsignedWhereUniqueInput
+  }
+
+  /**
+   * WineOnConsigned findUniqueOrThrow
+   */
+  export type WineOnConsignedFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which WineOnConsigned to fetch.
+     */
+    where: WineOnConsignedWhereUniqueInput
+  }
+
+  /**
+   * WineOnConsigned findFirst
+   */
+  export type WineOnConsignedFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which WineOnConsigned to fetch.
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WineOnConsigneds to fetch.
+     */
+    orderBy?: WineOnConsignedOrderByWithRelationInput | WineOnConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WineOnConsigneds.
+     */
+    cursor?: WineOnConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WineOnConsigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WineOnConsigneds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WineOnConsigneds.
+     */
+    distinct?: WineOnConsignedScalarFieldEnum | WineOnConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * WineOnConsigned findFirstOrThrow
+   */
+  export type WineOnConsignedFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which WineOnConsigned to fetch.
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WineOnConsigneds to fetch.
+     */
+    orderBy?: WineOnConsignedOrderByWithRelationInput | WineOnConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WineOnConsigneds.
+     */
+    cursor?: WineOnConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WineOnConsigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WineOnConsigneds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WineOnConsigneds.
+     */
+    distinct?: WineOnConsignedScalarFieldEnum | WineOnConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * WineOnConsigned findMany
+   */
+  export type WineOnConsignedFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * Filter, which WineOnConsigneds to fetch.
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WineOnConsigneds to fetch.
+     */
+    orderBy?: WineOnConsignedOrderByWithRelationInput | WineOnConsignedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WineOnConsigneds.
+     */
+    cursor?: WineOnConsignedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WineOnConsigneds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WineOnConsigneds.
+     */
+    skip?: number
+    distinct?: WineOnConsignedScalarFieldEnum | WineOnConsignedScalarFieldEnum[]
+  }
+
+  /**
+   * WineOnConsigned create
+   */
+  export type WineOnConsignedCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WineOnConsigned.
+     */
+    data: XOR<WineOnConsignedCreateInput, WineOnConsignedUncheckedCreateInput>
+  }
+
+  /**
+   * WineOnConsigned createMany
+   */
+  export type WineOnConsignedCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WineOnConsigneds.
+     */
+    data: WineOnConsignedCreateManyInput | WineOnConsignedCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WineOnConsigned createManyAndReturn
+   */
+  export type WineOnConsignedCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * The data used to create many WineOnConsigneds.
+     */
+    data: WineOnConsignedCreateManyInput | WineOnConsignedCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WineOnConsigned update
+   */
+  export type WineOnConsignedUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WineOnConsigned.
+     */
+    data: XOR<WineOnConsignedUpdateInput, WineOnConsignedUncheckedUpdateInput>
+    /**
+     * Choose, which WineOnConsigned to update.
+     */
+    where: WineOnConsignedWhereUniqueInput
+  }
+
+  /**
+   * WineOnConsigned updateMany
+   */
+  export type WineOnConsignedUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WineOnConsigneds.
+     */
+    data: XOR<WineOnConsignedUpdateManyMutationInput, WineOnConsignedUncheckedUpdateManyInput>
+    /**
+     * Filter which WineOnConsigneds to update
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * Limit how many WineOnConsigneds to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WineOnConsigned updateManyAndReturn
+   */
+  export type WineOnConsignedUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * The data used to update WineOnConsigneds.
+     */
+    data: XOR<WineOnConsignedUpdateManyMutationInput, WineOnConsignedUncheckedUpdateManyInput>
+    /**
+     * Filter which WineOnConsigneds to update
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * Limit how many WineOnConsigneds to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WineOnConsigned upsert
+   */
+  export type WineOnConsignedUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WineOnConsigned to update in case it exists.
+     */
+    where: WineOnConsignedWhereUniqueInput
+    /**
+     * In case the WineOnConsigned found by the `where` argument doesn't exist, create a new WineOnConsigned with this data.
+     */
+    create: XOR<WineOnConsignedCreateInput, WineOnConsignedUncheckedCreateInput>
+    /**
+     * In case the WineOnConsigned was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WineOnConsignedUpdateInput, WineOnConsignedUncheckedUpdateInput>
+  }
+
+  /**
+   * WineOnConsigned delete
+   */
+  export type WineOnConsignedDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+    /**
+     * Filter which WineOnConsigned to delete.
+     */
+    where: WineOnConsignedWhereUniqueInput
+  }
+
+  /**
+   * WineOnConsigned deleteMany
+   */
+  export type WineOnConsignedDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WineOnConsigneds to delete
+     */
+    where?: WineOnConsignedWhereInput
+    /**
+     * Limit how many WineOnConsigneds to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WineOnConsigned without action
+   */
+  export type WineOnConsignedDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WineOnConsigned
+     */
+    select?: WineOnConsignedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WineOnConsigned
+     */
+    omit?: WineOnConsignedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WineOnConsignedInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9196,6 +12937,43 @@ export namespace Prisma {
   export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
 
 
+  export const WineScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    harvest: 'harvest',
+    type: 'type',
+    price: 'price',
+    producer: 'producer',
+    country: 'country',
+    size: 'size',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type WineScalarFieldEnum = (typeof WineScalarFieldEnum)[keyof typeof WineScalarFieldEnum]
+
+
+  export const ConsignedScalarFieldEnum: {
+    id: 'id',
+    customerId: 'customerId',
+    status: 'status',
+    completedIn: 'completedIn',
+    createdAt: 'createdAt'
+  };
+
+  export type ConsignedScalarFieldEnum = (typeof ConsignedScalarFieldEnum)[keyof typeof ConsignedScalarFieldEnum]
+
+
+  export const WineOnConsignedScalarFieldEnum: {
+    consignedId: 'consignedId',
+    wineId: 'wineId',
+    balance: 'balance',
+    count: 'count'
+  };
+
+  export type WineOnConsignedScalarFieldEnum = (typeof WineOnConsignedScalarFieldEnum)[keyof typeof WineOnConsignedScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -9265,6 +13043,34 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'ConsignedStatus'
+   */
+  export type EnumConsignedStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsignedStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ConsignedStatus[]'
+   */
+  export type ListEnumConsignedStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsignedStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -9287,6 +13093,7 @@ export namespace Prisma {
     disabledAt?: DateTimeNullableFilter<"Customer"> | Date | string | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     users?: UserListRelationFilter
+    Consigned?: ConsignedListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
@@ -9303,6 +13110,7 @@ export namespace Prisma {
     disabledAt?: SortOrderInput | SortOrder
     address?: AddressOrderByWithRelationInput
     users?: UserOrderByRelationAggregateInput
+    Consigned?: ConsignedOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -9322,6 +13130,7 @@ export namespace Prisma {
     disabledAt?: DateTimeNullableFilter<"Customer"> | Date | string | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     users?: UserListRelationFilter
+    Consigned?: ConsignedListRelationFilter
   }, "id" | "document" | "email" | "stateRegistration">
 
   export type CustomerOrderByWithAggregationInput = {
@@ -9672,6 +13481,202 @@ export namespace Prisma {
     permissionId?: StringWithAggregatesFilter<"RolePermission"> | string
   }
 
+  export type WineWhereInput = {
+    AND?: WineWhereInput | WineWhereInput[]
+    OR?: WineWhereInput[]
+    NOT?: WineWhereInput | WineWhereInput[]
+    id?: StringFilter<"Wine"> | string
+    name?: StringFilter<"Wine"> | string
+    harvest?: IntNullableFilter<"Wine"> | number | null
+    type?: StringFilter<"Wine"> | string
+    price?: IntFilter<"Wine"> | number
+    producer?: StringNullableFilter<"Wine"> | string | null
+    country?: StringNullableFilter<"Wine"> | string | null
+    size?: StringFilter<"Wine"> | string
+    createdAt?: DateTimeFilter<"Wine"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Wine"> | Date | string | null
+    WineOnConsigned?: WineOnConsignedListRelationFilter
+  }
+
+  export type WineOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    harvest?: SortOrderInput | SortOrder
+    type?: SortOrder
+    price?: SortOrder
+    producer?: SortOrderInput | SortOrder
+    country?: SortOrderInput | SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    WineOnConsigned?: WineOnConsignedOrderByRelationAggregateInput
+  }
+
+  export type WineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WineWhereInput | WineWhereInput[]
+    OR?: WineWhereInput[]
+    NOT?: WineWhereInput | WineWhereInput[]
+    name?: StringFilter<"Wine"> | string
+    harvest?: IntNullableFilter<"Wine"> | number | null
+    type?: StringFilter<"Wine"> | string
+    price?: IntFilter<"Wine"> | number
+    producer?: StringNullableFilter<"Wine"> | string | null
+    country?: StringNullableFilter<"Wine"> | string | null
+    size?: StringFilter<"Wine"> | string
+    createdAt?: DateTimeFilter<"Wine"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Wine"> | Date | string | null
+    WineOnConsigned?: WineOnConsignedListRelationFilter
+  }, "id">
+
+  export type WineOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    harvest?: SortOrderInput | SortOrder
+    type?: SortOrder
+    price?: SortOrder
+    producer?: SortOrderInput | SortOrder
+    country?: SortOrderInput | SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
+    _count?: WineCountOrderByAggregateInput
+    _avg?: WineAvgOrderByAggregateInput
+    _max?: WineMaxOrderByAggregateInput
+    _min?: WineMinOrderByAggregateInput
+    _sum?: WineSumOrderByAggregateInput
+  }
+
+  export type WineScalarWhereWithAggregatesInput = {
+    AND?: WineScalarWhereWithAggregatesInput | WineScalarWhereWithAggregatesInput[]
+    OR?: WineScalarWhereWithAggregatesInput[]
+    NOT?: WineScalarWhereWithAggregatesInput | WineScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Wine"> | string
+    name?: StringWithAggregatesFilter<"Wine"> | string
+    harvest?: IntNullableWithAggregatesFilter<"Wine"> | number | null
+    type?: StringWithAggregatesFilter<"Wine"> | string
+    price?: IntWithAggregatesFilter<"Wine"> | number
+    producer?: StringNullableWithAggregatesFilter<"Wine"> | string | null
+    country?: StringNullableWithAggregatesFilter<"Wine"> | string | null
+    size?: StringWithAggregatesFilter<"Wine"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Wine"> | Date | string
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"Wine"> | Date | string | null
+  }
+
+  export type ConsignedWhereInput = {
+    AND?: ConsignedWhereInput | ConsignedWhereInput[]
+    OR?: ConsignedWhereInput[]
+    NOT?: ConsignedWhereInput | ConsignedWhereInput[]
+    id?: StringFilter<"Consigned"> | string
+    customerId?: StringFilter<"Consigned"> | string
+    status?: EnumConsignedStatusFilter<"Consigned"> | $Enums.ConsignedStatus
+    completedIn?: DateTimeNullableFilter<"Consigned"> | Date | string | null
+    createdAt?: DateTimeFilter<"Consigned"> | Date | string
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    winesOnConsigned?: WineOnConsignedListRelationFilter
+  }
+
+  export type ConsignedOrderByWithRelationInput = {
+    id?: SortOrder
+    customerId?: SortOrder
+    status?: SortOrder
+    completedIn?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    customer?: CustomerOrderByWithRelationInput
+    winesOnConsigned?: WineOnConsignedOrderByRelationAggregateInput
+  }
+
+  export type ConsignedWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ConsignedWhereInput | ConsignedWhereInput[]
+    OR?: ConsignedWhereInput[]
+    NOT?: ConsignedWhereInput | ConsignedWhereInput[]
+    customerId?: StringFilter<"Consigned"> | string
+    status?: EnumConsignedStatusFilter<"Consigned"> | $Enums.ConsignedStatus
+    completedIn?: DateTimeNullableFilter<"Consigned"> | Date | string | null
+    createdAt?: DateTimeFilter<"Consigned"> | Date | string
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    winesOnConsigned?: WineOnConsignedListRelationFilter
+  }, "id">
+
+  export type ConsignedOrderByWithAggregationInput = {
+    id?: SortOrder
+    customerId?: SortOrder
+    status?: SortOrder
+    completedIn?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ConsignedCountOrderByAggregateInput
+    _max?: ConsignedMaxOrderByAggregateInput
+    _min?: ConsignedMinOrderByAggregateInput
+  }
+
+  export type ConsignedScalarWhereWithAggregatesInput = {
+    AND?: ConsignedScalarWhereWithAggregatesInput | ConsignedScalarWhereWithAggregatesInput[]
+    OR?: ConsignedScalarWhereWithAggregatesInput[]
+    NOT?: ConsignedScalarWhereWithAggregatesInput | ConsignedScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Consigned"> | string
+    customerId?: StringWithAggregatesFilter<"Consigned"> | string
+    status?: EnumConsignedStatusWithAggregatesFilter<"Consigned"> | $Enums.ConsignedStatus
+    completedIn?: DateTimeNullableWithAggregatesFilter<"Consigned"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Consigned"> | Date | string
+  }
+
+  export type WineOnConsignedWhereInput = {
+    AND?: WineOnConsignedWhereInput | WineOnConsignedWhereInput[]
+    OR?: WineOnConsignedWhereInput[]
+    NOT?: WineOnConsignedWhereInput | WineOnConsignedWhereInput[]
+    consignedId?: StringFilter<"WineOnConsigned"> | string
+    wineId?: StringFilter<"WineOnConsigned"> | string
+    balance?: IntFilter<"WineOnConsigned"> | number
+    count?: IntNullableFilter<"WineOnConsigned"> | number | null
+    consigned?: XOR<ConsignedScalarRelationFilter, ConsignedWhereInput>
+    wines?: XOR<WineScalarRelationFilter, WineWhereInput>
+  }
+
+  export type WineOnConsignedOrderByWithRelationInput = {
+    consignedId?: SortOrder
+    wineId?: SortOrder
+    balance?: SortOrder
+    count?: SortOrderInput | SortOrder
+    consigned?: ConsignedOrderByWithRelationInput
+    wines?: WineOrderByWithRelationInput
+  }
+
+  export type WineOnConsignedWhereUniqueInput = Prisma.AtLeast<{
+    consignedId_wineId?: WineOnConsignedConsignedIdWineIdCompoundUniqueInput
+    AND?: WineOnConsignedWhereInput | WineOnConsignedWhereInput[]
+    OR?: WineOnConsignedWhereInput[]
+    NOT?: WineOnConsignedWhereInput | WineOnConsignedWhereInput[]
+    consignedId?: StringFilter<"WineOnConsigned"> | string
+    wineId?: StringFilter<"WineOnConsigned"> | string
+    balance?: IntFilter<"WineOnConsigned"> | number
+    count?: IntNullableFilter<"WineOnConsigned"> | number | null
+    consigned?: XOR<ConsignedScalarRelationFilter, ConsignedWhereInput>
+    wines?: XOR<WineScalarRelationFilter, WineWhereInput>
+  }, "consignedId_wineId">
+
+  export type WineOnConsignedOrderByWithAggregationInput = {
+    consignedId?: SortOrder
+    wineId?: SortOrder
+    balance?: SortOrder
+    count?: SortOrderInput | SortOrder
+    _count?: WineOnConsignedCountOrderByAggregateInput
+    _avg?: WineOnConsignedAvgOrderByAggregateInput
+    _max?: WineOnConsignedMaxOrderByAggregateInput
+    _min?: WineOnConsignedMinOrderByAggregateInput
+    _sum?: WineOnConsignedSumOrderByAggregateInput
+  }
+
+  export type WineOnConsignedScalarWhereWithAggregatesInput = {
+    AND?: WineOnConsignedScalarWhereWithAggregatesInput | WineOnConsignedScalarWhereWithAggregatesInput[]
+    OR?: WineOnConsignedScalarWhereWithAggregatesInput[]
+    NOT?: WineOnConsignedScalarWhereWithAggregatesInput | WineOnConsignedScalarWhereWithAggregatesInput[]
+    consignedId?: StringWithAggregatesFilter<"WineOnConsigned"> | string
+    wineId?: StringWithAggregatesFilter<"WineOnConsigned"> | string
+    balance?: IntWithAggregatesFilter<"WineOnConsigned"> | number
+    count?: IntNullableWithAggregatesFilter<"WineOnConsigned"> | number | null
+  }
+
   export type CustomerCreateInput = {
     id?: string
     name: string
@@ -9686,6 +13691,7 @@ export namespace Prisma {
     disabledAt?: Date | string | null
     address?: AddressCreateNestedOneWithoutCustomerInput
     users?: UserCreateNestedManyWithoutCustomerInput
+    Consigned?: ConsignedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateInput = {
@@ -9702,6 +13708,7 @@ export namespace Prisma {
     disabledAt?: Date | string | null
     address?: AddressUncheckedCreateNestedOneWithoutCustomerInput
     users?: UserUncheckedCreateNestedManyWithoutCustomerInput
+    Consigned?: ConsignedUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUpdateInput = {
@@ -9718,6 +13725,7 @@ export namespace Prisma {
     disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: AddressUpdateOneWithoutCustomerNestedInput
     users?: UserUpdateManyWithoutCustomerNestedInput
+    Consigned?: ConsignedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
@@ -9734,6 +13742,7 @@ export namespace Prisma {
     disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: AddressUncheckedUpdateOneWithoutCustomerNestedInput
     users?: UserUncheckedUpdateManyWithoutCustomerNestedInput
+    Consigned?: ConsignedUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateManyInput = {
@@ -10084,6 +14093,207 @@ export namespace Prisma {
     permissionId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type WineCreateInput = {
+    id?: string
+    name: string
+    harvest?: number | null
+    type: string
+    price: number
+    producer?: string | null
+    country?: string | null
+    size: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    WineOnConsigned?: WineOnConsignedCreateNestedManyWithoutWinesInput
+  }
+
+  export type WineUncheckedCreateInput = {
+    id?: string
+    name: string
+    harvest?: number | null
+    type: string
+    price: number
+    producer?: string | null
+    country?: string | null
+    size: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    WineOnConsigned?: WineOnConsignedUncheckedCreateNestedManyWithoutWinesInput
+  }
+
+  export type WineUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    harvest?: NullableIntFieldUpdateOperationsInput | number | null
+    type?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    producer?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    WineOnConsigned?: WineOnConsignedUpdateManyWithoutWinesNestedInput
+  }
+
+  export type WineUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    harvest?: NullableIntFieldUpdateOperationsInput | number | null
+    type?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    producer?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    WineOnConsigned?: WineOnConsignedUncheckedUpdateManyWithoutWinesNestedInput
+  }
+
+  export type WineCreateManyInput = {
+    id?: string
+    name: string
+    harvest?: number | null
+    type: string
+    price: number
+    producer?: string | null
+    country?: string | null
+    size: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type WineUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    harvest?: NullableIntFieldUpdateOperationsInput | number | null
+    type?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    producer?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type WineUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    harvest?: NullableIntFieldUpdateOperationsInput | number | null
+    type?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    producer?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ConsignedCreateInput = {
+    id?: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+    customer: CustomerCreateNestedOneWithoutConsignedInput
+    winesOnConsigned?: WineOnConsignedCreateNestedManyWithoutConsignedInput
+  }
+
+  export type ConsignedUncheckedCreateInput = {
+    id?: string
+    customerId: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+    winesOnConsigned?: WineOnConsignedUncheckedCreateNestedManyWithoutConsignedInput
+  }
+
+  export type ConsignedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneRequiredWithoutConsignedNestedInput
+    winesOnConsigned?: WineOnConsignedUpdateManyWithoutConsignedNestedInput
+  }
+
+  export type ConsignedUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winesOnConsigned?: WineOnConsignedUncheckedUpdateManyWithoutConsignedNestedInput
+  }
+
+  export type ConsignedCreateManyInput = {
+    id?: string
+    customerId: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type ConsignedUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConsignedUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WineOnConsignedCreateInput = {
+    balance: number
+    count?: number | null
+    consigned: ConsignedCreateNestedOneWithoutWinesOnConsignedInput
+    wines: WineCreateNestedOneWithoutWineOnConsignedInput
+  }
+
+  export type WineOnConsignedUncheckedCreateInput = {
+    consignedId: string
+    wineId: string
+    balance: number
+    count?: number | null
+  }
+
+  export type WineOnConsignedUpdateInput = {
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    consigned?: ConsignedUpdateOneRequiredWithoutWinesOnConsignedNestedInput
+    wines?: WineUpdateOneRequiredWithoutWineOnConsignedNestedInput
+  }
+
+  export type WineOnConsignedUncheckedUpdateInput = {
+    consignedId?: StringFieldUpdateOperationsInput | string
+    wineId?: StringFieldUpdateOperationsInput | string
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type WineOnConsignedCreateManyInput = {
+    consignedId: string
+    wineId: string
+    balance: number
+    count?: number | null
+  }
+
+  export type WineOnConsignedUpdateManyMutationInput = {
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type WineOnConsignedUncheckedUpdateManyInput = {
+    consignedId?: StringFieldUpdateOperationsInput | string
+    wineId?: StringFieldUpdateOperationsInput | string
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10147,12 +14357,22 @@ export namespace Prisma {
     none?: UserWhereInput
   }
 
+  export type ConsignedListRelationFilter = {
+    every?: ConsignedWhereInput
+    some?: ConsignedWhereInput
+    none?: ConsignedWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ConsignedOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10443,6 +14663,206 @@ export namespace Prisma {
     permissionId?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type WineOnConsignedListRelationFilter = {
+    every?: WineOnConsignedWhereInput
+    some?: WineOnConsignedWhereInput
+    none?: WineOnConsignedWhereInput
+  }
+
+  export type WineOnConsignedOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WineCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    harvest?: SortOrder
+    type?: SortOrder
+    price?: SortOrder
+    producer?: SortOrder
+    country?: SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WineAvgOrderByAggregateInput = {
+    harvest?: SortOrder
+    price?: SortOrder
+  }
+
+  export type WineMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    harvest?: SortOrder
+    type?: SortOrder
+    price?: SortOrder
+    producer?: SortOrder
+    country?: SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WineMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    harvest?: SortOrder
+    type?: SortOrder
+    price?: SortOrder
+    producer?: SortOrder
+    country?: SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WineSumOrderByAggregateInput = {
+    harvest?: SortOrder
+    price?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumConsignedStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsignedStatus | EnumConsignedStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsignedStatusFilter<$PrismaModel> | $Enums.ConsignedStatus
+  }
+
+  export type ConsignedCountOrderByAggregateInput = {
+    id?: SortOrder
+    customerId?: SortOrder
+    status?: SortOrder
+    completedIn?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConsignedMaxOrderByAggregateInput = {
+    id?: SortOrder
+    customerId?: SortOrder
+    status?: SortOrder
+    completedIn?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConsignedMinOrderByAggregateInput = {
+    id?: SortOrder
+    customerId?: SortOrder
+    status?: SortOrder
+    completedIn?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumConsignedStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsignedStatus | EnumConsignedStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsignedStatusWithAggregatesFilter<$PrismaModel> | $Enums.ConsignedStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumConsignedStatusFilter<$PrismaModel>
+    _max?: NestedEnumConsignedStatusFilter<$PrismaModel>
+  }
+
+  export type ConsignedScalarRelationFilter = {
+    is?: ConsignedWhereInput
+    isNot?: ConsignedWhereInput
+  }
+
+  export type WineScalarRelationFilter = {
+    is?: WineWhereInput
+    isNot?: WineWhereInput
+  }
+
+  export type WineOnConsignedConsignedIdWineIdCompoundUniqueInput = {
+    consignedId: string
+    wineId: string
+  }
+
+  export type WineOnConsignedCountOrderByAggregateInput = {
+    consignedId?: SortOrder
+    wineId?: SortOrder
+    balance?: SortOrder
+    count?: SortOrder
+  }
+
+  export type WineOnConsignedAvgOrderByAggregateInput = {
+    balance?: SortOrder
+    count?: SortOrder
+  }
+
+  export type WineOnConsignedMaxOrderByAggregateInput = {
+    consignedId?: SortOrder
+    wineId?: SortOrder
+    balance?: SortOrder
+    count?: SortOrder
+  }
+
+  export type WineOnConsignedMinOrderByAggregateInput = {
+    consignedId?: SortOrder
+    wineId?: SortOrder
+    balance?: SortOrder
+    count?: SortOrder
+  }
+
+  export type WineOnConsignedSumOrderByAggregateInput = {
+    balance?: SortOrder
+    count?: SortOrder
+  }
+
   export type AddressCreateNestedOneWithoutCustomerInput = {
     create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
     connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
@@ -10456,6 +14876,13 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
+  export type ConsignedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<ConsignedCreateWithoutCustomerInput, ConsignedUncheckedCreateWithoutCustomerInput> | ConsignedCreateWithoutCustomerInput[] | ConsignedUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ConsignedCreateOrConnectWithoutCustomerInput | ConsignedCreateOrConnectWithoutCustomerInput[]
+    createMany?: ConsignedCreateManyCustomerInputEnvelope
+    connect?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+  }
+
   export type AddressUncheckedCreateNestedOneWithoutCustomerInput = {
     create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
     connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
@@ -10467,6 +14894,13 @@ export namespace Prisma {
     connectOrCreate?: UserCreateOrConnectWithoutCustomerInput | UserCreateOrConnectWithoutCustomerInput[]
     createMany?: UserCreateManyCustomerInputEnvelope
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type ConsignedUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<ConsignedCreateWithoutCustomerInput, ConsignedUncheckedCreateWithoutCustomerInput> | ConsignedCreateWithoutCustomerInput[] | ConsignedUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ConsignedCreateOrConnectWithoutCustomerInput | ConsignedCreateOrConnectWithoutCustomerInput[]
+    createMany?: ConsignedCreateManyCustomerInputEnvelope
+    connect?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10509,6 +14943,20 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
+  export type ConsignedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<ConsignedCreateWithoutCustomerInput, ConsignedUncheckedCreateWithoutCustomerInput> | ConsignedCreateWithoutCustomerInput[] | ConsignedUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ConsignedCreateOrConnectWithoutCustomerInput | ConsignedCreateOrConnectWithoutCustomerInput[]
+    upsert?: ConsignedUpsertWithWhereUniqueWithoutCustomerInput | ConsignedUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: ConsignedCreateManyCustomerInputEnvelope
+    set?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    disconnect?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    delete?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    connect?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    update?: ConsignedUpdateWithWhereUniqueWithoutCustomerInput | ConsignedUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: ConsignedUpdateManyWithWhereWithoutCustomerInput | ConsignedUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: ConsignedScalarWhereInput | ConsignedScalarWhereInput[]
+  }
+
   export type AddressUncheckedUpdateOneWithoutCustomerNestedInput = {
     create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
     connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
@@ -10531,6 +14979,20 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutCustomerInput | UserUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: UserUpdateManyWithWhereWithoutCustomerInput | UserUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type ConsignedUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<ConsignedCreateWithoutCustomerInput, ConsignedUncheckedCreateWithoutCustomerInput> | ConsignedCreateWithoutCustomerInput[] | ConsignedUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: ConsignedCreateOrConnectWithoutCustomerInput | ConsignedCreateOrConnectWithoutCustomerInput[]
+    upsert?: ConsignedUpsertWithWhereUniqueWithoutCustomerInput | ConsignedUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: ConsignedCreateManyCustomerInputEnvelope
+    set?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    disconnect?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    delete?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    connect?: ConsignedWhereUniqueInput | ConsignedWhereUniqueInput[]
+    update?: ConsignedUpdateWithWhereUniqueWithoutCustomerInput | ConsignedUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: ConsignedUpdateManyWithWhereWithoutCustomerInput | ConsignedUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: ConsignedScalarWhereInput | ConsignedScalarWhereInput[]
   }
 
   export type CustomerCreateNestedOneWithoutAddressInput = {
@@ -10787,6 +15249,152 @@ export namespace Prisma {
     update?: XOR<XOR<PermissionUpdateToOneWithWhereWithoutRolesInput, PermissionUpdateWithoutRolesInput>, PermissionUncheckedUpdateWithoutRolesInput>
   }
 
+  export type WineOnConsignedCreateNestedManyWithoutWinesInput = {
+    create?: XOR<WineOnConsignedCreateWithoutWinesInput, WineOnConsignedUncheckedCreateWithoutWinesInput> | WineOnConsignedCreateWithoutWinesInput[] | WineOnConsignedUncheckedCreateWithoutWinesInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutWinesInput | WineOnConsignedCreateOrConnectWithoutWinesInput[]
+    createMany?: WineOnConsignedCreateManyWinesInputEnvelope
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+  }
+
+  export type WineOnConsignedUncheckedCreateNestedManyWithoutWinesInput = {
+    create?: XOR<WineOnConsignedCreateWithoutWinesInput, WineOnConsignedUncheckedCreateWithoutWinesInput> | WineOnConsignedCreateWithoutWinesInput[] | WineOnConsignedUncheckedCreateWithoutWinesInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutWinesInput | WineOnConsignedCreateOrConnectWithoutWinesInput[]
+    createMany?: WineOnConsignedCreateManyWinesInputEnvelope
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type WineOnConsignedUpdateManyWithoutWinesNestedInput = {
+    create?: XOR<WineOnConsignedCreateWithoutWinesInput, WineOnConsignedUncheckedCreateWithoutWinesInput> | WineOnConsignedCreateWithoutWinesInput[] | WineOnConsignedUncheckedCreateWithoutWinesInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutWinesInput | WineOnConsignedCreateOrConnectWithoutWinesInput[]
+    upsert?: WineOnConsignedUpsertWithWhereUniqueWithoutWinesInput | WineOnConsignedUpsertWithWhereUniqueWithoutWinesInput[]
+    createMany?: WineOnConsignedCreateManyWinesInputEnvelope
+    set?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    disconnect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    delete?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    update?: WineOnConsignedUpdateWithWhereUniqueWithoutWinesInput | WineOnConsignedUpdateWithWhereUniqueWithoutWinesInput[]
+    updateMany?: WineOnConsignedUpdateManyWithWhereWithoutWinesInput | WineOnConsignedUpdateManyWithWhereWithoutWinesInput[]
+    deleteMany?: WineOnConsignedScalarWhereInput | WineOnConsignedScalarWhereInput[]
+  }
+
+  export type WineOnConsignedUncheckedUpdateManyWithoutWinesNestedInput = {
+    create?: XOR<WineOnConsignedCreateWithoutWinesInput, WineOnConsignedUncheckedCreateWithoutWinesInput> | WineOnConsignedCreateWithoutWinesInput[] | WineOnConsignedUncheckedCreateWithoutWinesInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutWinesInput | WineOnConsignedCreateOrConnectWithoutWinesInput[]
+    upsert?: WineOnConsignedUpsertWithWhereUniqueWithoutWinesInput | WineOnConsignedUpsertWithWhereUniqueWithoutWinesInput[]
+    createMany?: WineOnConsignedCreateManyWinesInputEnvelope
+    set?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    disconnect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    delete?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    update?: WineOnConsignedUpdateWithWhereUniqueWithoutWinesInput | WineOnConsignedUpdateWithWhereUniqueWithoutWinesInput[]
+    updateMany?: WineOnConsignedUpdateManyWithWhereWithoutWinesInput | WineOnConsignedUpdateManyWithWhereWithoutWinesInput[]
+    deleteMany?: WineOnConsignedScalarWhereInput | WineOnConsignedScalarWhereInput[]
+  }
+
+  export type CustomerCreateNestedOneWithoutConsignedInput = {
+    create?: XOR<CustomerCreateWithoutConsignedInput, CustomerUncheckedCreateWithoutConsignedInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutConsignedInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type WineOnConsignedCreateNestedManyWithoutConsignedInput = {
+    create?: XOR<WineOnConsignedCreateWithoutConsignedInput, WineOnConsignedUncheckedCreateWithoutConsignedInput> | WineOnConsignedCreateWithoutConsignedInput[] | WineOnConsignedUncheckedCreateWithoutConsignedInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutConsignedInput | WineOnConsignedCreateOrConnectWithoutConsignedInput[]
+    createMany?: WineOnConsignedCreateManyConsignedInputEnvelope
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+  }
+
+  export type WineOnConsignedUncheckedCreateNestedManyWithoutConsignedInput = {
+    create?: XOR<WineOnConsignedCreateWithoutConsignedInput, WineOnConsignedUncheckedCreateWithoutConsignedInput> | WineOnConsignedCreateWithoutConsignedInput[] | WineOnConsignedUncheckedCreateWithoutConsignedInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutConsignedInput | WineOnConsignedCreateOrConnectWithoutConsignedInput[]
+    createMany?: WineOnConsignedCreateManyConsignedInputEnvelope
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+  }
+
+  export type EnumConsignedStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ConsignedStatus
+  }
+
+  export type CustomerUpdateOneRequiredWithoutConsignedNestedInput = {
+    create?: XOR<CustomerCreateWithoutConsignedInput, CustomerUncheckedCreateWithoutConsignedInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutConsignedInput
+    upsert?: CustomerUpsertWithoutConsignedInput
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutConsignedInput, CustomerUpdateWithoutConsignedInput>, CustomerUncheckedUpdateWithoutConsignedInput>
+  }
+
+  export type WineOnConsignedUpdateManyWithoutConsignedNestedInput = {
+    create?: XOR<WineOnConsignedCreateWithoutConsignedInput, WineOnConsignedUncheckedCreateWithoutConsignedInput> | WineOnConsignedCreateWithoutConsignedInput[] | WineOnConsignedUncheckedCreateWithoutConsignedInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutConsignedInput | WineOnConsignedCreateOrConnectWithoutConsignedInput[]
+    upsert?: WineOnConsignedUpsertWithWhereUniqueWithoutConsignedInput | WineOnConsignedUpsertWithWhereUniqueWithoutConsignedInput[]
+    createMany?: WineOnConsignedCreateManyConsignedInputEnvelope
+    set?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    disconnect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    delete?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    update?: WineOnConsignedUpdateWithWhereUniqueWithoutConsignedInput | WineOnConsignedUpdateWithWhereUniqueWithoutConsignedInput[]
+    updateMany?: WineOnConsignedUpdateManyWithWhereWithoutConsignedInput | WineOnConsignedUpdateManyWithWhereWithoutConsignedInput[]
+    deleteMany?: WineOnConsignedScalarWhereInput | WineOnConsignedScalarWhereInput[]
+  }
+
+  export type WineOnConsignedUncheckedUpdateManyWithoutConsignedNestedInput = {
+    create?: XOR<WineOnConsignedCreateWithoutConsignedInput, WineOnConsignedUncheckedCreateWithoutConsignedInput> | WineOnConsignedCreateWithoutConsignedInput[] | WineOnConsignedUncheckedCreateWithoutConsignedInput[]
+    connectOrCreate?: WineOnConsignedCreateOrConnectWithoutConsignedInput | WineOnConsignedCreateOrConnectWithoutConsignedInput[]
+    upsert?: WineOnConsignedUpsertWithWhereUniqueWithoutConsignedInput | WineOnConsignedUpsertWithWhereUniqueWithoutConsignedInput[]
+    createMany?: WineOnConsignedCreateManyConsignedInputEnvelope
+    set?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    disconnect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    delete?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    connect?: WineOnConsignedWhereUniqueInput | WineOnConsignedWhereUniqueInput[]
+    update?: WineOnConsignedUpdateWithWhereUniqueWithoutConsignedInput | WineOnConsignedUpdateWithWhereUniqueWithoutConsignedInput[]
+    updateMany?: WineOnConsignedUpdateManyWithWhereWithoutConsignedInput | WineOnConsignedUpdateManyWithWhereWithoutConsignedInput[]
+    deleteMany?: WineOnConsignedScalarWhereInput | WineOnConsignedScalarWhereInput[]
+  }
+
+  export type ConsignedCreateNestedOneWithoutWinesOnConsignedInput = {
+    create?: XOR<ConsignedCreateWithoutWinesOnConsignedInput, ConsignedUncheckedCreateWithoutWinesOnConsignedInput>
+    connectOrCreate?: ConsignedCreateOrConnectWithoutWinesOnConsignedInput
+    connect?: ConsignedWhereUniqueInput
+  }
+
+  export type WineCreateNestedOneWithoutWineOnConsignedInput = {
+    create?: XOR<WineCreateWithoutWineOnConsignedInput, WineUncheckedCreateWithoutWineOnConsignedInput>
+    connectOrCreate?: WineCreateOrConnectWithoutWineOnConsignedInput
+    connect?: WineWhereUniqueInput
+  }
+
+  export type ConsignedUpdateOneRequiredWithoutWinesOnConsignedNestedInput = {
+    create?: XOR<ConsignedCreateWithoutWinesOnConsignedInput, ConsignedUncheckedCreateWithoutWinesOnConsignedInput>
+    connectOrCreate?: ConsignedCreateOrConnectWithoutWinesOnConsignedInput
+    upsert?: ConsignedUpsertWithoutWinesOnConsignedInput
+    connect?: ConsignedWhereUniqueInput
+    update?: XOR<XOR<ConsignedUpdateToOneWithWhereWithoutWinesOnConsignedInput, ConsignedUpdateWithoutWinesOnConsignedInput>, ConsignedUncheckedUpdateWithoutWinesOnConsignedInput>
+  }
+
+  export type WineUpdateOneRequiredWithoutWineOnConsignedNestedInput = {
+    create?: XOR<WineCreateWithoutWineOnConsignedInput, WineUncheckedCreateWithoutWineOnConsignedInput>
+    connectOrCreate?: WineCreateOrConnectWithoutWineOnConsignedInput
+    upsert?: WineUpsertWithoutWineOnConsignedInput
+    connect?: WineWhereUniqueInput
+    update?: XOR<XOR<WineUpdateToOneWithWhereWithoutWineOnConsignedInput, WineUpdateWithoutWineOnConsignedInput>, WineUncheckedUpdateWithoutWineOnConsignedInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10921,6 +15529,77 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumConsignedStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsignedStatus | EnumConsignedStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsignedStatusFilter<$PrismaModel> | $Enums.ConsignedStatus
+  }
+
+  export type NestedEnumConsignedStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsignedStatus | EnumConsignedStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsignedStatus[] | ListEnumConsignedStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsignedStatusWithAggregatesFilter<$PrismaModel> | $Enums.ConsignedStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumConsignedStatusFilter<$PrismaModel>
+    _max?: NestedEnumConsignedStatusFilter<$PrismaModel>
+  }
+
   export type AddressCreateWithoutCustomerInput = {
     id?: string
     streetAddress?: string | null
@@ -10973,6 +15652,32 @@ export namespace Prisma {
 
   export type UserCreateManyCustomerInputEnvelope = {
     data: UserCreateManyCustomerInput | UserCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ConsignedCreateWithoutCustomerInput = {
+    id?: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+    winesOnConsigned?: WineOnConsignedCreateNestedManyWithoutConsignedInput
+  }
+
+  export type ConsignedUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+    winesOnConsigned?: WineOnConsignedUncheckedCreateNestedManyWithoutConsignedInput
+  }
+
+  export type ConsignedCreateOrConnectWithoutCustomerInput = {
+    where: ConsignedWhereUniqueInput
+    create: XOR<ConsignedCreateWithoutCustomerInput, ConsignedUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type ConsignedCreateManyCustomerInputEnvelope = {
+    data: ConsignedCreateManyCustomerInput | ConsignedCreateManyCustomerInput[]
     skipDuplicates?: boolean
   }
 
@@ -11036,6 +15741,33 @@ export namespace Prisma {
     associatedCustomerId?: StringNullableFilter<"User"> | string | null
   }
 
+  export type ConsignedUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: ConsignedWhereUniqueInput
+    update: XOR<ConsignedUpdateWithoutCustomerInput, ConsignedUncheckedUpdateWithoutCustomerInput>
+    create: XOR<ConsignedCreateWithoutCustomerInput, ConsignedUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type ConsignedUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: ConsignedWhereUniqueInput
+    data: XOR<ConsignedUpdateWithoutCustomerInput, ConsignedUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type ConsignedUpdateManyWithWhereWithoutCustomerInput = {
+    where: ConsignedScalarWhereInput
+    data: XOR<ConsignedUpdateManyMutationInput, ConsignedUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type ConsignedScalarWhereInput = {
+    AND?: ConsignedScalarWhereInput | ConsignedScalarWhereInput[]
+    OR?: ConsignedScalarWhereInput[]
+    NOT?: ConsignedScalarWhereInput | ConsignedScalarWhereInput[]
+    id?: StringFilter<"Consigned"> | string
+    customerId?: StringFilter<"Consigned"> | string
+    status?: EnumConsignedStatusFilter<"Consigned"> | $Enums.ConsignedStatus
+    completedIn?: DateTimeNullableFilter<"Consigned"> | Date | string | null
+    createdAt?: DateTimeFilter<"Consigned"> | Date | string
+  }
+
   export type CustomerCreateWithoutAddressInput = {
     id?: string
     name: string
@@ -11049,6 +15781,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     disabledAt?: Date | string | null
     users?: UserCreateNestedManyWithoutCustomerInput
+    Consigned?: ConsignedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutAddressInput = {
@@ -11064,6 +15797,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     disabledAt?: Date | string | null
     users?: UserUncheckedCreateNestedManyWithoutCustomerInput
+    Consigned?: ConsignedUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutAddressInput = {
@@ -11095,6 +15829,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: UserUpdateManyWithoutCustomerNestedInput
+    Consigned?: ConsignedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutAddressInput = {
@@ -11110,6 +15845,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: UserUncheckedUpdateManyWithoutCustomerNestedInput
+    Consigned?: ConsignedUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type UserRoleCreateWithoutUserInput = {
@@ -11143,6 +15879,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     disabledAt?: Date | string | null
     address?: AddressCreateNestedOneWithoutCustomerInput
+    Consigned?: ConsignedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutUsersInput = {
@@ -11158,6 +15895,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     disabledAt?: Date | string | null
     address?: AddressUncheckedCreateNestedOneWithoutCustomerInput
+    Consigned?: ConsignedUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutUsersInput = {
@@ -11213,6 +15951,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: AddressUpdateOneWithoutCustomerNestedInput
+    Consigned?: ConsignedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutUsersInput = {
@@ -11228,6 +15967,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: AddressUncheckedUpdateOneWithoutCustomerNestedInput
+    Consigned?: ConsignedUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type UserRoleCreateWithoutRoleInput = {
@@ -11516,6 +16256,288 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type WineOnConsignedCreateWithoutWinesInput = {
+    balance: number
+    count?: number | null
+    consigned: ConsignedCreateNestedOneWithoutWinesOnConsignedInput
+  }
+
+  export type WineOnConsignedUncheckedCreateWithoutWinesInput = {
+    consignedId: string
+    balance: number
+    count?: number | null
+  }
+
+  export type WineOnConsignedCreateOrConnectWithoutWinesInput = {
+    where: WineOnConsignedWhereUniqueInput
+    create: XOR<WineOnConsignedCreateWithoutWinesInput, WineOnConsignedUncheckedCreateWithoutWinesInput>
+  }
+
+  export type WineOnConsignedCreateManyWinesInputEnvelope = {
+    data: WineOnConsignedCreateManyWinesInput | WineOnConsignedCreateManyWinesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WineOnConsignedUpsertWithWhereUniqueWithoutWinesInput = {
+    where: WineOnConsignedWhereUniqueInput
+    update: XOR<WineOnConsignedUpdateWithoutWinesInput, WineOnConsignedUncheckedUpdateWithoutWinesInput>
+    create: XOR<WineOnConsignedCreateWithoutWinesInput, WineOnConsignedUncheckedCreateWithoutWinesInput>
+  }
+
+  export type WineOnConsignedUpdateWithWhereUniqueWithoutWinesInput = {
+    where: WineOnConsignedWhereUniqueInput
+    data: XOR<WineOnConsignedUpdateWithoutWinesInput, WineOnConsignedUncheckedUpdateWithoutWinesInput>
+  }
+
+  export type WineOnConsignedUpdateManyWithWhereWithoutWinesInput = {
+    where: WineOnConsignedScalarWhereInput
+    data: XOR<WineOnConsignedUpdateManyMutationInput, WineOnConsignedUncheckedUpdateManyWithoutWinesInput>
+  }
+
+  export type WineOnConsignedScalarWhereInput = {
+    AND?: WineOnConsignedScalarWhereInput | WineOnConsignedScalarWhereInput[]
+    OR?: WineOnConsignedScalarWhereInput[]
+    NOT?: WineOnConsignedScalarWhereInput | WineOnConsignedScalarWhereInput[]
+    consignedId?: StringFilter<"WineOnConsigned"> | string
+    wineId?: StringFilter<"WineOnConsigned"> | string
+    balance?: IntFilter<"WineOnConsigned"> | number
+    count?: IntNullableFilter<"WineOnConsigned"> | number | null
+  }
+
+  export type CustomerCreateWithoutConsignedInput = {
+    id?: string
+    name: string
+    document: string
+    contactPerson?: string | null
+    email?: string | null
+    cellphone?: string | null
+    businessPhone?: string | null
+    stateRegistration: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    disabledAt?: Date | string | null
+    address?: AddressCreateNestedOneWithoutCustomerInput
+    users?: UserCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutConsignedInput = {
+    id?: string
+    name: string
+    document: string
+    contactPerson?: string | null
+    email?: string | null
+    cellphone?: string | null
+    businessPhone?: string | null
+    stateRegistration: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    disabledAt?: Date | string | null
+    address?: AddressUncheckedCreateNestedOneWithoutCustomerInput
+    users?: UserUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutConsignedInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutConsignedInput, CustomerUncheckedCreateWithoutConsignedInput>
+  }
+
+  export type WineOnConsignedCreateWithoutConsignedInput = {
+    balance: number
+    count?: number | null
+    wines: WineCreateNestedOneWithoutWineOnConsignedInput
+  }
+
+  export type WineOnConsignedUncheckedCreateWithoutConsignedInput = {
+    wineId: string
+    balance: number
+    count?: number | null
+  }
+
+  export type WineOnConsignedCreateOrConnectWithoutConsignedInput = {
+    where: WineOnConsignedWhereUniqueInput
+    create: XOR<WineOnConsignedCreateWithoutConsignedInput, WineOnConsignedUncheckedCreateWithoutConsignedInput>
+  }
+
+  export type WineOnConsignedCreateManyConsignedInputEnvelope = {
+    data: WineOnConsignedCreateManyConsignedInput | WineOnConsignedCreateManyConsignedInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CustomerUpsertWithoutConsignedInput = {
+    update: XOR<CustomerUpdateWithoutConsignedInput, CustomerUncheckedUpdateWithoutConsignedInput>
+    create: XOR<CustomerCreateWithoutConsignedInput, CustomerUncheckedCreateWithoutConsignedInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutConsignedInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutConsignedInput, CustomerUncheckedUpdateWithoutConsignedInput>
+  }
+
+  export type CustomerUpdateWithoutConsignedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    document?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    cellphone?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    stateRegistration?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: AddressUpdateOneWithoutCustomerNestedInput
+    users?: UserUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutConsignedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    document?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    cellphone?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    stateRegistration?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: AddressUncheckedUpdateOneWithoutCustomerNestedInput
+    users?: UserUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type WineOnConsignedUpsertWithWhereUniqueWithoutConsignedInput = {
+    where: WineOnConsignedWhereUniqueInput
+    update: XOR<WineOnConsignedUpdateWithoutConsignedInput, WineOnConsignedUncheckedUpdateWithoutConsignedInput>
+    create: XOR<WineOnConsignedCreateWithoutConsignedInput, WineOnConsignedUncheckedCreateWithoutConsignedInput>
+  }
+
+  export type WineOnConsignedUpdateWithWhereUniqueWithoutConsignedInput = {
+    where: WineOnConsignedWhereUniqueInput
+    data: XOR<WineOnConsignedUpdateWithoutConsignedInput, WineOnConsignedUncheckedUpdateWithoutConsignedInput>
+  }
+
+  export type WineOnConsignedUpdateManyWithWhereWithoutConsignedInput = {
+    where: WineOnConsignedScalarWhereInput
+    data: XOR<WineOnConsignedUpdateManyMutationInput, WineOnConsignedUncheckedUpdateManyWithoutConsignedInput>
+  }
+
+  export type ConsignedCreateWithoutWinesOnConsignedInput = {
+    id?: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+    customer: CustomerCreateNestedOneWithoutConsignedInput
+  }
+
+  export type ConsignedUncheckedCreateWithoutWinesOnConsignedInput = {
+    id?: string
+    customerId: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type ConsignedCreateOrConnectWithoutWinesOnConsignedInput = {
+    where: ConsignedWhereUniqueInput
+    create: XOR<ConsignedCreateWithoutWinesOnConsignedInput, ConsignedUncheckedCreateWithoutWinesOnConsignedInput>
+  }
+
+  export type WineCreateWithoutWineOnConsignedInput = {
+    id?: string
+    name: string
+    harvest?: number | null
+    type: string
+    price: number
+    producer?: string | null
+    country?: string | null
+    size: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type WineUncheckedCreateWithoutWineOnConsignedInput = {
+    id?: string
+    name: string
+    harvest?: number | null
+    type: string
+    price: number
+    producer?: string | null
+    country?: string | null
+    size: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type WineCreateOrConnectWithoutWineOnConsignedInput = {
+    where: WineWhereUniqueInput
+    create: XOR<WineCreateWithoutWineOnConsignedInput, WineUncheckedCreateWithoutWineOnConsignedInput>
+  }
+
+  export type ConsignedUpsertWithoutWinesOnConsignedInput = {
+    update: XOR<ConsignedUpdateWithoutWinesOnConsignedInput, ConsignedUncheckedUpdateWithoutWinesOnConsignedInput>
+    create: XOR<ConsignedCreateWithoutWinesOnConsignedInput, ConsignedUncheckedCreateWithoutWinesOnConsignedInput>
+    where?: ConsignedWhereInput
+  }
+
+  export type ConsignedUpdateToOneWithWhereWithoutWinesOnConsignedInput = {
+    where?: ConsignedWhereInput
+    data: XOR<ConsignedUpdateWithoutWinesOnConsignedInput, ConsignedUncheckedUpdateWithoutWinesOnConsignedInput>
+  }
+
+  export type ConsignedUpdateWithoutWinesOnConsignedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneRequiredWithoutConsignedNestedInput
+  }
+
+  export type ConsignedUncheckedUpdateWithoutWinesOnConsignedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WineUpsertWithoutWineOnConsignedInput = {
+    update: XOR<WineUpdateWithoutWineOnConsignedInput, WineUncheckedUpdateWithoutWineOnConsignedInput>
+    create: XOR<WineCreateWithoutWineOnConsignedInput, WineUncheckedCreateWithoutWineOnConsignedInput>
+    where?: WineWhereInput
+  }
+
+  export type WineUpdateToOneWithWhereWithoutWineOnConsignedInput = {
+    where?: WineWhereInput
+    data: XOR<WineUpdateWithoutWineOnConsignedInput, WineUncheckedUpdateWithoutWineOnConsignedInput>
+  }
+
+  export type WineUpdateWithoutWineOnConsignedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    harvest?: NullableIntFieldUpdateOperationsInput | number | null
+    type?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    producer?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type WineUncheckedUpdateWithoutWineOnConsignedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    harvest?: NullableIntFieldUpdateOperationsInput | number | null
+    type?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    producer?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type UserCreateManyCustomerInput = {
     id?: string
     email: string
@@ -11523,6 +16545,13 @@ export namespace Prisma {
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ConsignedCreateManyCustomerInput = {
+    id?: string
+    status?: $Enums.ConsignedStatus
+    completedIn?: Date | string | null
+    createdAt?: Date | string
   }
 
   export type UserUpdateWithoutCustomerInput = {
@@ -11552,6 +16581,29 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConsignedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winesOnConsigned?: WineOnConsignedUpdateManyWithoutConsignedNestedInput
+  }
+
+  export type ConsignedUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winesOnConsigned?: WineOnConsignedUncheckedUpdateManyWithoutConsignedNestedInput
+  }
+
+  export type ConsignedUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
+    completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserRoleCreateManyUserInput = {
@@ -11616,6 +16668,54 @@ export namespace Prisma {
 
   export type RolePermissionUncheckedUpdateManyWithoutPermissionInput = {
     roleId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WineOnConsignedCreateManyWinesInput = {
+    consignedId: string
+    balance: number
+    count?: number | null
+  }
+
+  export type WineOnConsignedUpdateWithoutWinesInput = {
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    consigned?: ConsignedUpdateOneRequiredWithoutWinesOnConsignedNestedInput
+  }
+
+  export type WineOnConsignedUncheckedUpdateWithoutWinesInput = {
+    consignedId?: StringFieldUpdateOperationsInput | string
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type WineOnConsignedUncheckedUpdateManyWithoutWinesInput = {
+    consignedId?: StringFieldUpdateOperationsInput | string
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type WineOnConsignedCreateManyConsignedInput = {
+    wineId: string
+    balance: number
+    count?: number | null
+  }
+
+  export type WineOnConsignedUpdateWithoutConsignedInput = {
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    wines?: WineUpdateOneRequiredWithoutWineOnConsignedNestedInput
+  }
+
+  export type WineOnConsignedUncheckedUpdateWithoutConsignedInput = {
+    wineId?: StringFieldUpdateOperationsInput | string
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type WineOnConsignedUncheckedUpdateManyWithoutConsignedInput = {
+    wineId?: StringFieldUpdateOperationsInput | string
+    balance?: IntFieldUpdateOperationsInput | number
+    count?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 

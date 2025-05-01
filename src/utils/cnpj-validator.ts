@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export function isValidCNPJ(cnpj: string): boolean {
-  cnpj = cnpj.replace(/[^\d]+/g, '');
+  cnpj = cnpj.replace(/[^\d]+/g, "");
   if (cnpj.length !== 14 || /^(\d)\1{13}$/.test(cnpj)) return false;
 
   let tamanho = cnpj.length - 2;
@@ -32,9 +32,10 @@ export function isValidCNPJ(cnpj: string): boolean {
   return resultado === Number(digitos.charAt(1));
 }
 
-export const zodCNPJ = () => 
-  z.string()
-    .min(14, {message: "CNPJ deve ter no mínimo 14 caracteres"})
+export const zodCNPJ = () =>
+  z
+    .string()
+    .min(14, { message: "CNPJ deve ter no mínimo 14 caracteres" })
     .refine(isValidCNPJ, {
       message: "CNPJ inválido",
-    })
+    });

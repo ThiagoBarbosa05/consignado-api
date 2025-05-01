@@ -1,3 +1,3 @@
 function normalizePhoneNumber(phone: string): string {
-  return phone.replace(/\D/g, '')
+  return phone.replace(/\D/g, "");
 }

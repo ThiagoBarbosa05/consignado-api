@@ -4,20 +4,20 @@ export function checkPermission(requiredPermission: string) {
   return async (req: Request, res: Response, next: NextFunction) => {
     const permissions = req.user?.permissions || [];
 
-    if (permissions.includes('all')) {
+    if (permissions.includes("all")) {
       next();
-      return 
+      return;
     }
 
     // Se o usuário tem a permissão específica, libera
     if (permissions.includes(requiredPermission)) {
       next();
-      return 
+      return;
     }
 
     // Caso contrário, bloqueia
-     res.status(403).json({ message: 'Acesso negado: Permissão insuficiente' });
-     return
+    res.status(403).json({ message: "Acesso negado: Permissão insuficiente" });
+    return;
 
     // try {
     //   const userId = req.user?.sub
@@ -72,5 +72,5 @@ export function checkPermission(requiredPermission: string) {
     //   next()
     // }
     // catch (error) {}
-  }
+  };
 }

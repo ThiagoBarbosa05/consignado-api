@@ -7,7 +7,7 @@
 generator client {
   provider      = "prisma-client-js"
   output        = "../src/generated/prisma"
-  binaryTargets = ["debian-openssl-1.1.x"]
+  binaryTargets = ["debian-openssl-1.1.x", "windows"]
 }
 
 datasource db {
@@ -25,11 +25,12 @@ model Customer {
   businessPhone     String? @map("business_phone")
   stateRegistration String  @unique @map("state_registration")
 
-  createdAt  DateTime  @default(now()) @map("created_at")
-  updatedAt  DateTime? @updatedAt @map("updated_at")
-  disabledAt DateTime? @map("disabled_at")
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime?   @updatedAt @map("updated_at")
+  disabledAt DateTime?   @map("disabled_at")
   address    Address?
   users      User[]
+  Consigned  Consigned[]
 
   @@index([name])
   @@map("customers")
@@ -102,4 +103,54 @@ model RolePermission {
 
   @@id([roleId, permissionId])
   @@map("role_permissions")
+}
+
+model Wine {
+  id       String  @id @default(uuid())
+  name     String
+  harvest  Int?
+  type     String
+  price    Int
+  producer String?
+  country  String?
+  size     String
+
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime?         @updatedAt @map("updated_at")
+  WineOnConsigned WineOnConsigned[]
+
+  @@index([name])
+  @@map("wines")
+}
+
+enum ConsignedStatus {
+  EM_ANDAMENTO
+  CONCLUÍDO
+}
+
+model Consigned {
+  id               String            @id @default(uuid())
+  customerId       String            @map("customer_id")
+  customer         Customer          @relation(fields: [customerId], references: [id])
+  winesOnConsigned WineOnConsigned[]
+  status           ConsignedStatus   @default(EM_ANDAMENTO)
+
+  completedIn DateTime? @map("saved_in")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("consigned")
+}
+
+model WineOnConsigned {
+  consignedId String @map("consigned_id")
+  wineId      String @map("wine_id")
+
+  consigned Consigned @relation(fields: [consignedId], references: [id])
+  wines     Wine      @relation(fields: [wineId], references: [id])
+
+  balance Int
+  count   Int?
+
+  @@id([consignedId, wineId])
+  @@map("wine_on_consigned")
 }

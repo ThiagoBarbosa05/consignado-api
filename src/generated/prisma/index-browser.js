@@ -173,6 +173,34 @@ exports.Prisma.RolePermissionScalarFieldEnum = {
   permissionId: 'permissionId'
 };
 
+exports.Prisma.WineScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  harvest: 'harvest',
+  type: 'type',
+  price: 'price',
+  producer: 'producer',
+  country: 'country',
+  size: 'size',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConsignedScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  status: 'status',
+  completedIn: 'completedIn',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.WineOnConsignedScalarFieldEnum = {
+  consignedId: 'consignedId',
+  wineId: 'wineId',
+  balance: 'balance',
+  count: 'count'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -187,7 +215,10 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.ConsignedStatus = exports.$Enums.ConsignedStatus = {
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  CONCLUÍDO: 'CONCLUÍDO'
+};
 
 exports.Prisma.ModelName = {
   Customer: 'Customer',
@@ -196,7 +227,10 @@ exports.Prisma.ModelName = {
   Role: 'Role',
   Permission: 'Permission',
   UserRole: 'UserRole',
-  RolePermission: 'RolePermission'
+  RolePermission: 'RolePermission',
+  Wine: 'Wine',
+  Consigned: 'Consigned',
+  WineOnConsigned: 'WineOnConsigned'
 };
 
 /**
