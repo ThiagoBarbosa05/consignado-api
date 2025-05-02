@@ -6,6 +6,7 @@ import { dashboardMetricsController } from "./controllers/dashboard-metrics";
 import { prisma } from "./lib/prisma";
 import dotenv from "dotenv";
 import { wineRoute } from "./routes/wine-route";
+import { consignedRoute } from "./routes/consigned-route";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors());
 app.use("/api", customerRouter);
 app.use("/api", userRoute);
 app.use("/api", wineRoute);
+app.use("/api", consignedRoute);
 
 app.get("/api/metrics", dashboardMetricsController);
 

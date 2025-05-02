@@ -191,7 +191,8 @@ exports.Prisma.ConsignedScalarFieldEnum = {
   customerId: 'customerId',
   status: 'status',
   completedIn: 'completedIn',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.WineOnConsignedScalarFieldEnum = {

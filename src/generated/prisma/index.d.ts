@@ -10683,6 +10683,7 @@ export namespace Prisma {
     status: $Enums.ConsignedStatus | null
     completedIn: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ConsignedMaxAggregateOutputType = {
@@ -10691,6 +10692,7 @@ export namespace Prisma {
     status: $Enums.ConsignedStatus | null
     completedIn: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ConsignedCountAggregateOutputType = {
@@ -10699,6 +10701,7 @@ export namespace Prisma {
     status: number
     completedIn: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -10709,6 +10712,7 @@ export namespace Prisma {
     status?: true
     completedIn?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type ConsignedMaxAggregateInputType = {
@@ -10717,6 +10721,7 @@ export namespace Prisma {
     status?: true
     completedIn?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type ConsignedCountAggregateInputType = {
@@ -10725,6 +10730,7 @@ export namespace Prisma {
     status?: true
     completedIn?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -10806,6 +10812,7 @@ export namespace Prisma {
     status: $Enums.ConsignedStatus
     completedIn: Date | null
     createdAt: Date
+    updatedAt: Date | null
     _count: ConsignedCountAggregateOutputType | null
     _min: ConsignedMinAggregateOutputType | null
     _max: ConsignedMaxAggregateOutputType | null
@@ -10831,6 +10838,7 @@ export namespace Prisma {
     status?: boolean
     completedIn?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     winesOnConsigned?: boolean | Consigned$winesOnConsignedArgs<ExtArgs>
     _count?: boolean | ConsignedCountOutputTypeDefaultArgs<ExtArgs>
@@ -10842,6 +10850,7 @@ export namespace Prisma {
     status?: boolean
     completedIn?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["consigned"]>
 
@@ -10851,6 +10860,7 @@ export namespace Prisma {
     status?: boolean
     completedIn?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["consigned"]>
 
@@ -10860,9 +10870,10 @@ export namespace Prisma {
     status?: boolean
     completedIn?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ConsignedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "status" | "completedIn" | "createdAt", ExtArgs["result"]["consigned"]>
+  export type ConsignedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "status" | "completedIn" | "createdAt" | "updatedAt", ExtArgs["result"]["consigned"]>
   export type ConsignedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     winesOnConsigned?: boolean | Consigned$winesOnConsignedArgs<ExtArgs>
@@ -10887,6 +10898,7 @@ export namespace Prisma {
       status: $Enums.ConsignedStatus
       completedIn: Date | null
       createdAt: Date
+      updatedAt: Date | null
     }, ExtArgs["result"]["consigned"]>
     composites: {}
   }
@@ -11317,6 +11329,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Consigned", 'ConsignedStatus'>
     readonly completedIn: FieldRef<"Consigned", 'DateTime'>
     readonly createdAt: FieldRef<"Consigned", 'DateTime'>
+    readonly updatedAt: FieldRef<"Consigned", 'DateTime'>
   }
     
 
@@ -12958,7 +12971,8 @@ export namespace Prisma {
     customerId: 'customerId',
     status: 'status',
     completedIn: 'completedIn',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ConsignedScalarFieldEnum = (typeof ConsignedScalarFieldEnum)[keyof typeof ConsignedScalarFieldEnum]
@@ -13572,6 +13586,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFilter<"Consigned"> | $Enums.ConsignedStatus
     completedIn?: DateTimeNullableFilter<"Consigned"> | Date | string | null
     createdAt?: DateTimeFilter<"Consigned"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Consigned"> | Date | string | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     winesOnConsigned?: WineOnConsignedListRelationFilter
   }
@@ -13582,6 +13597,7 @@ export namespace Prisma {
     status?: SortOrder
     completedIn?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     customer?: CustomerOrderByWithRelationInput
     winesOnConsigned?: WineOnConsignedOrderByRelationAggregateInput
   }
@@ -13595,6 +13611,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFilter<"Consigned"> | $Enums.ConsignedStatus
     completedIn?: DateTimeNullableFilter<"Consigned"> | Date | string | null
     createdAt?: DateTimeFilter<"Consigned"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Consigned"> | Date | string | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     winesOnConsigned?: WineOnConsignedListRelationFilter
   }, "id">
@@ -13605,6 +13622,7 @@ export namespace Prisma {
     status?: SortOrder
     completedIn?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _count?: ConsignedCountOrderByAggregateInput
     _max?: ConsignedMaxOrderByAggregateInput
     _min?: ConsignedMinOrderByAggregateInput
@@ -13619,6 +13637,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusWithAggregatesFilter<"Consigned"> | $Enums.ConsignedStatus
     completedIn?: DateTimeNullableWithAggregatesFilter<"Consigned"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Consigned"> | Date | string
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"Consigned"> | Date | string | null
   }
 
   export type WineOnConsignedWhereInput = {
@@ -14193,6 +14212,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
     customer: CustomerCreateNestedOneWithoutConsignedInput
     winesOnConsigned?: WineOnConsignedCreateNestedManyWithoutConsignedInput
   }
@@ -14203,6 +14223,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
     winesOnConsigned?: WineOnConsignedUncheckedCreateNestedManyWithoutConsignedInput
   }
 
@@ -14211,6 +14232,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: CustomerUpdateOneRequiredWithoutConsignedNestedInput
     winesOnConsigned?: WineOnConsignedUpdateManyWithoutConsignedNestedInput
   }
@@ -14221,6 +14243,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     winesOnConsigned?: WineOnConsignedUncheckedUpdateManyWithoutConsignedNestedInput
   }
 
@@ -14230,6 +14253,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type ConsignedUpdateManyMutationInput = {
@@ -14237,6 +14261,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ConsignedUncheckedUpdateManyInput = {
@@ -14245,6 +14270,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type WineOnConsignedCreateInput = {
@@ -14789,6 +14815,7 @@ export namespace Prisma {
     status?: SortOrder
     completedIn?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ConsignedMaxOrderByAggregateInput = {
@@ -14797,6 +14824,7 @@ export namespace Prisma {
     status?: SortOrder
     completedIn?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ConsignedMinOrderByAggregateInput = {
@@ -14805,6 +14833,7 @@ export namespace Prisma {
     status?: SortOrder
     completedIn?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumConsignedStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -15660,6 +15689,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
     winesOnConsigned?: WineOnConsignedCreateNestedManyWithoutConsignedInput
   }
 
@@ -15668,6 +15698,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
     winesOnConsigned?: WineOnConsignedUncheckedCreateNestedManyWithoutConsignedInput
   }
 
@@ -15766,6 +15797,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFilter<"Consigned"> | $Enums.ConsignedStatus
     completedIn?: DateTimeNullableFilter<"Consigned"> | Date | string | null
     createdAt?: DateTimeFilter<"Consigned"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Consigned"> | Date | string | null
   }
 
   export type CustomerCreateWithoutAddressInput = {
@@ -16427,6 +16459,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
     customer: CustomerCreateNestedOneWithoutConsignedInput
   }
 
@@ -16436,6 +16469,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type ConsignedCreateOrConnectWithoutWinesOnConsignedInput = {
@@ -16490,6 +16524,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: CustomerUpdateOneRequiredWithoutConsignedNestedInput
   }
 
@@ -16499,6 +16534,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type WineUpsertWithoutWineOnConsignedInput = {
@@ -16552,6 +16588,7 @@ export namespace Prisma {
     status?: $Enums.ConsignedStatus
     completedIn?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type UserUpdateWithoutCustomerInput = {
@@ -16588,6 +16625,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     winesOnConsigned?: WineOnConsignedUpdateManyWithoutConsignedNestedInput
   }
 
@@ -16596,6 +16634,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     winesOnConsigned?: WineOnConsignedUncheckedUpdateManyWithoutConsignedNestedInput
   }
 
@@ -16604,6 +16643,7 @@ export namespace Prisma {
     status?: EnumConsignedStatusFieldUpdateOperationsInput | $Enums.ConsignedStatus
     completedIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserRoleCreateManyUserInput = {
