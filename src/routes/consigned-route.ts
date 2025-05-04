@@ -4,26 +4,34 @@ import { checkPermission } from "../middleware.ts/check-permissions";
 import { createConsignedController } from "../controllers/create-consigned";
 import { listConsignedController } from "../controllers/list-consigned";
 import { getConsignedController } from "../controllers/get-consigned";
+import { countWineOnConsignedController } from "../controllers/count-consigned";
 
 export const consignedRoute = Router();
 
 consignedRoute.post(
   "/consigned",
   authenticate,
-  checkPermission("create:wine"),
+  checkPermission("create:consigned"),
   createConsignedController
 );
 
 consignedRoute.get(
   "/consigned",
   authenticate,
-  checkPermission("read:wine"),
+  checkPermission("read:consigned"),
   listConsignedController
 );
 
 consignedRoute.get(
   "/consigned/:id",
   authenticate,
-  checkPermission("read:wine"),
+  checkPermission("read:consigned"),
   getConsignedController
+);
+
+consignedRoute.put(
+  "/consigned/count/:id",
+  authenticate,
+  checkPermission("update:consigned"),
+  countWineOnConsignedController
 );
