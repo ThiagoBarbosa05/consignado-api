@@ -5,6 +5,21 @@ export async function deleteWineController(req: Request, res: Response) {
   try {
     const { id } = req.params;
 
+    const wineExistsInConsigned = await prisma.wineOnConsigned.findFirst({
+      where: {
+        wineId: id,
+      },
+    });
+
+    if (wineExistsInConsigned) {
+      res
+        .status(400)
+        .send({
+          message: "Vinho não pode ser deletado, pois pertence a um consignado",
+        });
+      return;
+    }
+
     await prisma.wine.delete({
       where: {
         id,

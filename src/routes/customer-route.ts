@@ -7,6 +7,7 @@ import { updateCustomerController } from "../controllers/update-customer";
 import { disableCustomerController } from "../controllers/disable-customer";
 import { authenticate } from "../middleware.ts/authenticate";
 import { checkPermission } from "../middleware.ts/check-permissions";
+import { listCustomerSummaryController } from "../controllers/list-customer-summary";
 
 export const customerRouter = Router();
 
@@ -39,4 +40,11 @@ customerRouter.patch(
   authenticate,
   checkPermission("delete:customer"),
   disableCustomerController
+);
+
+customerRouter.get(
+  "/summary",
+  authenticate,
+  checkPermission("read:customer"),
+  listCustomerSummaryController
 );

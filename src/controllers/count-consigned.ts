@@ -11,17 +11,17 @@ export async function countWineOnConsignedController(
     const { counts, customerId } = countWineSchema.parse(req.body);
     const { id } = req.params;
 
-    await prisma.$transaction(async (tx) => {
-      counts.map((count) =>
+    await prisma.$transaction(
+      counts.map((wine) =>
         prisma.wineOnConsigned.update({
           where: {
             consignedId_wineId: {
-              wineId: count.wineId,
               consignedId: id,
+              wineId: wine.wineId,
             },
           },
           data: {
-            count: count.quantity,
+            count: wine.quantity,
             consigned: {
               update: {
                 completedIn: new Date(),
@@ -30,8 +30,8 @@ export async function countWineOnConsignedController(
             },
           },
         })
-      );
-    });
+      )
+    );
 
     const updatedWines = await prisma.wineOnConsigned.findMany({
       where: {
@@ -44,6 +44,21 @@ export async function countWineOnConsignedController(
     });
 
     console.log(updatedWines);
+
+    await prisma.consigned.create({
+      data: {
+        customerId: updatedWines[0].consigned.customerId,
+        winesOnConsigned: {
+          createMany: {
+            data: updatedWines.map((wine) => ({
+              balance: wine.count ?? wine.balance,
+              wineId: wine.wineId,
+              count: wine.count,
+            })),
+          },
+        },
+      },
+    });
 
     res.send();
     return;

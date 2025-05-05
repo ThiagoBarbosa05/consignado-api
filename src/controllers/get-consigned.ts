@@ -38,6 +38,7 @@ export async function getConsignedController(req: Request, res: Response) {
       },
       where: {
         id,
+        status: "EM_ANDAMENTO",
       },
     });
 

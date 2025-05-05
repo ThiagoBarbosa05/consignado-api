@@ -7,6 +7,8 @@ import { prisma } from "./lib/prisma";
 import dotenv from "dotenv";
 import { wineRoute } from "./routes/wine-route";
 import { consignedRoute } from "./routes/consigned-route";
+import { authenticate } from "./middleware.ts/authenticate";
+import { checkPermission } from "./middleware.ts/check-permissions";
 
 dotenv.config();
 
@@ -21,7 +23,12 @@ app.use("/api", userRoute);
 app.use("/api", wineRoute);
 app.use("/api", consignedRoute);
 
-app.get("/api/metrics", dashboardMetricsController);
+app.get(
+  "/api/metrics",
+  authenticate,
+  checkPermission("read:metrics"),
+  dashboardMetricsController
+);
 
 app.listen(3000, () => {
   console.log("Server is listening on http://localhost:4000");

@@ -4,6 +4,9 @@ import { prisma } from "../lib/prisma";
 export async function listConsignedController(req: Request, res: Response) {
   try {
     const consignedList = await prisma.consigned.findMany({
+      where: {
+        status: "EM_ANDAMENTO",
+      },
       select: {
         id: true,
         createdAt: true,

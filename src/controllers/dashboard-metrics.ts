@@ -9,8 +9,19 @@ export async function dashboardMetricsController(req: Request, res: Response) {
       },
     });
 
+    const winesQuantity = await prisma.wine.count();
 
-    res.send({ count });
+    const winesOnConsigned = await prisma.wineOnConsigned.aggregate({
+      _sum: {
+        balance: true,
+      },
+    });
+
+    res.send({
+      count,
+      winesQuantity,
+      winesOnConsigned: winesOnConsigned._sum.balance,
+    });
     return;
   } catch (error) {
     console.log(error);
