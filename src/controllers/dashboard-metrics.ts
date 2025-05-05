@@ -12,6 +12,11 @@ export async function dashboardMetricsController(req: Request, res: Response) {
     const winesQuantity = await prisma.wine.count();
 
     const winesOnConsigned = await prisma.wineOnConsigned.aggregate({
+      where: {
+        consigned: {
+          status: "EM_ANDAMENTO",
+        },
+      },
       _sum: {
         balance: true,
       },
