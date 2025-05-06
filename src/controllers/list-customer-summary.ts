@@ -24,6 +24,7 @@ export async function listCustomerSummaryController(
             status: "EM_ANDAMENTO",
           },
           select: {
+            id: true,
             winesOnConsigned: {
               select: {
                 balance: true,
@@ -49,9 +50,12 @@ export async function listCustomerSummaryController(
       const wineTypes = new Set(allWines.map((item) => item.wines.type));
       const totalTypes = wineTypes.size;
 
+      console.log(customers[0].Consigned);
+
       return {
         customerId: customer.id,
         customer: customer.name,
+        consignedId: customer.Consigned[0].id,
         totalTypes,
         totalBalance,
       };
