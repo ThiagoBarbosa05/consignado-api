@@ -1,30 +1,30 @@
-import {hash} from "bcryptjs"
+import { hash } from "bcryptjs";
 import { PrismaClient } from "../src/generated/prisma";
 
-const prisma = new PrismaClient({log: ["query", "info", "warn", "error"]});
+const prisma = new PrismaClient({ log: ["query", "info", "warn", "error"] });
 
 async function seed() {
-//  await prisma.role.createMany({
-//     data: [
-//       { name: "administrador" },
-//       { name: "vendedor" },
-//       { name: "cliente" }
-//     ]
-//   })
+  //  await prisma.role.createMany({
+  //     data: [
+  //       { name: "administrador" },
+  //       { name: "vendedor" },
+  //       { name: "cliente" }
+  //     ]
+  //   })
 
-// await prisma.permission.create({
-//   data: {
-//     name: "all",
-//     description: "Todas as permissões"
-//   }
-// })
+  // await prisma.permission.create({
+  //   data: {
+  //     name: "all",
+  //     description: "Todas as permissões"
+  //   }
+  // })
 
-// await prisma.rolePermission.create({
-//   data: {
-//     permissionId: "cf530c4b-d999-48d9-ade5-aed2e8e3ec00",
-//     roleId: "fe7d118e-876e-4805-a43c-8c8c3d06128b"
-//   }
-// })
+  // await prisma.rolePermission.create({
+  //   data: {
+  //     permissionId: "95b0aece-c667-42fa-af30-cbb4f4d8422d",
+  //     roleId: "51769704-0dc9-4fa8-8ca8-503bda6e54e7",
+  //   },
+  // });
 
   // const userCreated = await prisma.user.create({
   //   data: {
@@ -35,8 +35,12 @@ async function seed() {
   // })
 
   // await prisma.permission.createMany({
-  //   data: [
-  //     { 
+  // data: [
+  // {
+  //   name: "read:metrics",
+  //   description: "Visualizar métricas no dashboard",
+  // },
+  //     {
   //       name: "read:metrics",
   //       description: "Visualizar métricas no dashboard"
   //     },
@@ -72,7 +76,7 @@ async function seed() {
   //       name: "delete:users",
   //       description: "Excluir usuários"
   //     },
-    
+
   //     {
   //       name: "read:consigned",
   //       description: "Visualizar vendas consignadas"
@@ -105,8 +109,8 @@ async function seed() {
   //       name: "delete:wines",
   //       description: "Excluir vinhos"
   //     }
-  //   ]
-  // })
+  //   ],
+  // });
 
   // await prisma.rolePermission.create({
   //   data: {
@@ -118,15 +122,17 @@ async function seed() {
   await prisma.userRole.create({
     data: {
       userId: "ae84c314-7421-44e8-9903-7a5af1e1d675",
-      roleId: "fe7d118e-876e-4805-a43c-8c8c3d06128b"
-    }
-  })
+      roleId: "fe7d118e-876e-4805-a43c-8c8c3d06128b",
+    },
+  });
 }
 
-seed().then(async () => {
-  await prisma.$disconnect()
-}).catch(async (e) => {
-  console.error(e)
-  await prisma.$disconnect()
-  process.exit(1)
-})
+seed()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

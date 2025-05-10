@@ -37,6 +37,7 @@ userRoute.get(
   checkPermission("read:users"),
   getUserController
 );
+
 userRoute.put(
   "/users/:id",
   authenticate,
