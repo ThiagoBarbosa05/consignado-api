@@ -46,7 +46,13 @@ export async function addWinesOnConsignedController(
               wineId: wine.wineId,
             },
           },
-          update: {},
+          update: {
+            consigned: {
+              update: {
+                updatedAt: new Date(),
+              },
+            },
+          },
           create: {
             consignedId: newWinesOnConsigned.consignedId,
             wineId: wine.wineId,

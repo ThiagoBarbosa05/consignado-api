@@ -18,6 +18,9 @@ export async function getConsignedController(req: Request, res: Response) {
           },
         },
         winesOnConsigned: {
+          orderBy: {
+            balance: "asc",
+          },
           select: {
             consignedId: true,
             wineId: true,

@@ -21,7 +21,7 @@ async function seed() {
 
   // await prisma.rolePermission.create({
   //   data: {
-  //     permissionId: "95b0aece-c667-42fa-af30-cbb4f4d8422d",
+  //     permissionId: "397c0549-2a27-4933-b773-c51de4154128",
   //     roleId: "51769704-0dc9-4fa8-8ca8-503bda6e54e7",
   //   },
   // });

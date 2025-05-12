@@ -7,6 +7,7 @@ import { getConsignedController } from "../controllers/get-consigned";
 import { countWineOnConsignedController } from "../controllers/count-consigned";
 import { consignedHistoryController } from "../controllers/consigned-history";
 import { addWinesOnConsignedController } from "../controllers/add-wines-consigned";
+import { updateWineBalanceController } from "../controllers/update-wine-balance";
 
 export const consignedRoute = Router();
 
@@ -50,4 +51,11 @@ consignedRoute.put(
   authenticate,
   checkPermission("update:consigned"),
   addWinesOnConsignedController
+);
+
+consignedRoute.put(
+  "/consigned/wine/balance",
+  authenticate,
+  checkPermission("update:consigned"),
+  updateWineBalanceController
 );
