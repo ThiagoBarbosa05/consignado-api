@@ -39,8 +39,16 @@ export async function listWineMetricsController(req: Request, res: Response) {
   `;
 
     const whereClause = queryParams.search
-      ? Prisma.sql`WHERE w.name ILIKE ${"%" + queryParams.search + "%"} OR c.name ILIKE ${"%" + queryParams.search + "%"} AND con.status = 'EM_ANDAMENTO'`
-      : Prisma.empty;
+      ? Prisma.sql`  WHERE 
+        (w.name ILIKE ${"%" + queryParams.search + "%"} 
+        OR c.name ILIKE ${"%" + queryParams.search + "%"}) 
+        AND con.status = 'EM_ANDAMENTO'
+        AND c.disabled_at IS NULL`
+      : Prisma.sql`
+      WHERE 
+        con.status = 'EM_ANDAMENTO'
+        AND c.disabled_at IS NULL
+    `;
 
     const groupOrderPagination = Prisma.sql`
     GROUP BY w.id, c.name
@@ -51,6 +59,8 @@ export async function listWineMetricsController(req: Request, res: Response) {
     const fullQuery = Prisma.sql`${query} ${whereClause} ${groupOrderPagination}`;
 
     const result = await prisma.$queryRaw<GroupedWineResult[]>(fullQuery);
+
+    console.log(result);
 
     res.status(200).send({
       items: result.map((item) => ({

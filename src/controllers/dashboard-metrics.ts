@@ -15,6 +15,9 @@ export async function dashboardMetricsController(req: Request, res: Response) {
       where: {
         consigned: {
           status: "EM_ANDAMENTO",
+          customer: {
+            disabledAt: null,
+          },
         },
       },
       _sum: {

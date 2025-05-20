@@ -33,6 +33,18 @@ export async function listUsersController(req: Request, res: Response) {
           contains: search as string,
           mode: "insensitive",
         },
+        OR: [
+          {
+            customer: null, // Inclui usuários sem nenhum customer
+          },
+          {
+            customer: {
+              is: {
+                disabledAt: null, // Inclui usuários com customer ativo
+              },
+            },
+          },
+        ],
       },
       orderBy: {
         createdAt: "desc",

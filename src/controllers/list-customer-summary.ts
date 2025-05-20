@@ -15,6 +15,7 @@ export async function listCustomerSummaryController(
             },
           },
         },
+        disabledAt: null,
       },
       select: {
         id: true,

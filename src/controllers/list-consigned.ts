@@ -13,6 +13,7 @@ export async function listConsignedController(req: Request, res: Response) {
             contains: search as string,
             mode: "insensitive",
           },
+          disabledAt: null,
         },
       },
       select: {
