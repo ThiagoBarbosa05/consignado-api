@@ -32,6 +32,7 @@ export async function updateWineBalanceController(req: Request, res: Response) {
       },
       data: {
         balance,
+        count: balance,
         consigned: {
           update: {
             updatedAt: new Date(),

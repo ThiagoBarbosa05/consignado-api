@@ -7,7 +7,10 @@ export async function consignedHistoryController(req: Request, res: Response) {
 
     const consignedByCustomerId = await prisma.consigned.findMany({
       where: {
-        OR: [{ customerId }, { status: "CONCLUÍDO" }],
+        customerId,
+        customer: {
+          disabledAt: null,
+        },
       },
       select: {
         id: true,
@@ -31,9 +34,10 @@ export async function consignedHistoryController(req: Request, res: Response) {
           },
         },
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
-
-    console.log(consignedByCustomerId);
 
     res.send({ consignedByCustomerId });
     return;
