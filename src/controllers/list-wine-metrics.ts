@@ -60,8 +60,6 @@ export async function listWineMetricsController(req: Request, res: Response) {
 
     const result = await prisma.$queryRaw<GroupedWineResult[]>(fullQuery);
 
-    console.log(result);
-
     res.status(200).send({
       items: result.map((item) => ({
         wineId: item.wine_id,

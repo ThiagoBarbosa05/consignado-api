@@ -7,6 +7,7 @@ import { updateWineController } from "../controllers/update-wine";
 import { deleteWineController } from "../controllers/delete-wine";
 import { getWine } from "../controllers/get-wine";
 import { listWineMetricsController } from "../controllers/list-wine-metrics";
+import { getWineDetailsController } from "../controllers/get-wine-details";
 
 export const wineRoute = Router();
 
@@ -43,6 +44,13 @@ wineRoute.get(
   authenticate,
   checkPermission("read:wine"),
   getWine
+);
+
+wineRoute.get(
+  "/wines/:wineId/details",
+  authenticate,
+  checkPermission("read:wine"),
+  getWineDetailsController
 );
 
 wineRoute.get(
