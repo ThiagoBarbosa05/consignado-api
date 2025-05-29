@@ -31,6 +31,7 @@ export async function authenticateUserController(req: Request, res: Response) {
         },
         customer: {
           select: {
+            id: true,
             Consigned: {
               select: {
                 id: true,
@@ -66,6 +67,7 @@ export async function authenticateUserController(req: Request, res: Response) {
         consigned: user.customer?.Consigned[0]
           ? user.customer.Consigned[0].id
           : null,
+        customerId: user.customer?.id || null,
       },
       process.env.JWT_SECRET!
     );
