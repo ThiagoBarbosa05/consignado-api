@@ -50,7 +50,7 @@ export async function authenticateUserController(req: Request, res: Response) {
       return;
     }
 
-    const isPasswordValid = compare(password, user.password);
+    const isPasswordValid = await compare(password, user.password);
 
     if (!isPasswordValid) {
       res.status(401).send({ message: "email/senha inválidos" });
