@@ -15,6 +15,7 @@ export async function createConsignedController(req: Request, res: Response) {
             data: newConsigned.wines.map((wine) => ({
               wineId: wine.id,
               balance: wine.quantity,
+              count: wine.quantity,
             })),
           },
         },

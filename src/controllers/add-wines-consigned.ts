@@ -57,6 +57,7 @@ export async function addWinesOnConsignedController(
             consignedId: newWinesOnConsigned.consignedId,
             wineId: wine.wineId,
             balance: wine.quantity,
+            count: wine.quantity,
           },
         })
       )
